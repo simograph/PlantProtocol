@@ -168,79 +168,6 @@
             text-align: center;
         }
 
-        /* Quick Picks Grid (Wirecutter Style) */
-        .quick-picks {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .pick-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease;
-        }
-
-        .pick-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-green);
-        }
-
-        .pick-badge {
-            text-align: center;
-            font-weight: 700;
-            padding: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
-            color: #000;
-        }
-
-        .badge-overall { background: var(--badge-gold); }
-        .badge-budget { background: var(--badge-blue); }
-        .badge-yield { background: var(--accent-green); }
-
-        .pick-image-container {
-            height: 200px;
-            overflow: hidden;
-            background: #000;
-            position: relative;
-        }
-
-        .pick-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-        }
-
-        .pick-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .pick-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .pick-bottom-line {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
         /* Call to Action Button */
         .btn-glow {
             display: block;
@@ -289,11 +216,101 @@
             flex: 1;
         }
 
-        .review-main-image {
-            width: 100%;
+        /* Custom AliExpress Embed Widget */
+        .ali-embed-widget {
+            background: #fff;
             border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            border: 1px solid var(--glass-border);
+            color: #222;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             margin-bottom: 1.5rem;
+        }
+        
+        .ali-embed-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+        
+        /* Direct image embed from AliExpress CDN */
+        .ali-embed-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .ali-placeholder-text {
+            position: absolute;
+            color: #999;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .ali-embed-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .ali-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #111;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .ali-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--ali-orange);
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .ali-rating {
+            color: #ffb700;
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .ali-rating span {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .ali-btn {
+            background: var(--ali-orange);
+            color: #fff;
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            font-weight: 700;
+            text-align: center;
+            display: block;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+            text-transform: uppercase;
+        }
+        
+        .ali-btn:hover {
+            background: #d63333;
         }
 
         .verdict-box {
@@ -410,65 +427,26 @@
                 <p>By sourcing directly from AliExpress, you can acquire high-end Samsung LM301B/H diodes and Meanwell drivers at a fraction of the cost. After rigorous testing, here are the top three setups that offer the highest PPFD per dollar without compromising on safety or yield.</p>
             </section>
 
-            <!-- Quick Recommendations Grid -->
-            <section class="quick-recommendations">
-                <div class="quick-picks">
-                    <!-- Pick 1 -->
-                    <div class="pick-card">
-                        <div class="pick-badge badge-overall">Best Overall Value</div>
-                        <div class="pick-image-container">
-                            <iframe src="https://rcm.aliexpress.com/widget/widget.htm?type=product&productId=1005005167664404" style="width: 100%; height: 100%; border: none; overflow: hidden;" frameborder="0" scrolling="no"></iframe>
-                        </div>
-                        <div class="pick-content">
-                            <div>
-                                <div class="pick-title">MasterGrow Full Spectrum 300W</div>
-                                <div class="pick-bottom-line">"The sweet spot of price and performance, perfect for a standard 3x3 grow tent."</div>
-                            </div>
-                            <a href="#mastergrow" class="btn-glow" style="margin-bottom: 0.5rem; background: rgba(255,255,255,0.1); color: #fff; box-shadow: none;">Read Review</a>
-                            <a href="#" class="btn-glow">Check on AliExpress</a>
-                        </div>
-                    </div>
-
-                    <!-- Pick 2 -->
-                    <div class="pick-card">
-                        <div class="pick-badge badge-budget">Best Budget Pick</div>
-                        <div class="pick-image-container">
-                            <iframe src="https://rcm.aliexpress.com/widget/widget.htm?type=product&productId=1005004283598711" style="width: 100%; height: 100%; border: none; overflow: hidden;" frameborder="0" scrolling="no"></iframe>
-                        </div>
-                        <div class="pick-content">
-                            <div>
-                                <div class="pick-title">Ming&Ben Fanless 100W</div>
-                                <div class="pick-bottom-line">"An incredibly affordable, completely silent panel perfect for apartment seed starting."</div>
-                            </div>
-                            <a href="#mingben" class="btn-glow" style="margin-bottom: 0.5rem; background: rgba(255,255,255,0.1); color: #fff; box-shadow: none;">Read Review</a>
-                            <a href="#" class="btn-glow">Check on AliExpress</a>
-                        </div>
-                    </div>
-
-                    <!-- Pick 3 -->
-                    <div class="pick-card">
-                        <div class="pick-badge badge-yield">Highest Yield Potential</div>
-                        <div class="pick-image-container">
-                            <iframe src="https://rcm.aliexpress.com/widget/widget.htm?type=product&productId=1005003312984572" style="width: 100%; height: 100%; border: none; overflow: hidden;" frameborder="0" scrolling="no"></iframe>
-                        </div>
-                        <div class="pick-content">
-                            <div>
-                                <div class="pick-title">YXO YUXINOU 480W Board</div>
-                                <div class="pick-bottom-line">"Massive true wattage and genuine Samsung diodes for serious indoor fruiting."</div>
-                            </div>
-                            <a href="#yxo" class="btn-glow" style="margin-bottom: 0.5rem; background: rgba(255,255,255,0.1); color: #fff; box-shadow: none;">Read Review</a>
-                            <a href="#" class="btn-glow">Check on AliExpress</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <section class="deep-dive-section">
                 
                 <!-- Review 1 -->
                 <div id="mastergrow" class="review-block">
                     <div class="review-left">
-                        <iframe src="https://rcm.aliexpress.com/widget/widget.htm?type=product&productId=1005005167664404" class="review-main-image" style="width: 100%; height: 350px; border: none; overflow: hidden; background: #fff;" frameborder="0" scrolling="no"></iframe>
+                        
+                        <!-- Custom AliExpress Affiliate Widget -->
+                        <div class="ali-embed-widget">
+                            <div class="ali-embed-img">
+                                <span class="ali-placeholder-text">[Insert AliExpress Image URL Here]</span>
+                            </div>
+                            <div class="ali-embed-content">
+                                <div class="ali-title">MasterGrow Full Spectrum LED Grow Light 300W For Indoor Plants</div>
+                                <div class="ali-rating">★★★★☆ <span>(1,240 Reviews)</span></div>
+                                <div class="ali-price">US $78.50</div>
+                                <!-- Notice the tracking ID parameter in the href -->
+                                <a href="https://aliexpress.com/item/1005005167664404.html?tracking_id=plantprotocol" target="_blank" rel="nofollow" class="ali-btn">Buy on AliExpress</a>
+                            </div>
+                        </div>
+                        
                         <div class="verdict-box">
                             <div class="score">9.2</div>
                             <div class="score-label">PlantProtocol Score</div>
@@ -499,14 +477,28 @@
                             </div>
                         </div>
                         
-                        <a href="#" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
+                        <a href="https://aliexpress.com/item/1005005167664404.html?tracking_id=plantprotocol" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
                     </div>
                 </div>
 
                 <!-- Review 2 -->
                 <div id="mingben" class="review-block">
                     <div class="review-left">
-                        <iframe src="https://rcm.aliexpress.com/widget/widget.htm?type=product&productId=1005004283598711" class="review-main-image" style="width: 100%; height: 350px; border: none; overflow: hidden; background: #fff;" frameborder="0" scrolling="no"></iframe>
+                        
+                        <!-- Custom AliExpress Affiliate Widget -->
+                        <div class="ali-embed-widget">
+                            <div class="ali-embed-img">
+                                <span class="ali-placeholder-text">[Insert AliExpress Image URL Here]</span>
+                            </div>
+                            <div class="ali-embed-content">
+                                <div class="ali-title">Ming&Ben LED Grow Light Full Spectrum Phytolamp 100W</div>
+                                <div class="ali-rating">★★★★★ <span>(3,892 Reviews)</span></div>
+                                <div class="ali-price">US $26.15</div>
+                                <!-- Notice the tracking ID parameter in the href -->
+                                <a href="https://aliexpress.com/item/1005004283598711.html?tracking_id=plantprotocol" target="_blank" rel="nofollow" class="ali-btn">Buy on AliExpress</a>
+                            </div>
+                        </div>
+                        
                         <div class="verdict-box">
                             <div class="score">8.5</div>
                             <div class="score-label">PlantProtocol Score</div>
@@ -537,14 +529,28 @@
                             </div>
                         </div>
                         
-                        <a href="#" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
+                        <a href="https://aliexpress.com/item/1005004283598711.html?tracking_id=plantprotocol" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
                     </div>
                 </div>
 
                 <!-- Review 3 -->
                 <div id="yxo" class="review-block">
                     <div class="review-left">
-                        <iframe src="https://rcm.aliexpress.com/widget/widget.htm?type=product&productId=1005003312984572" class="review-main-image" style="width: 100%; height: 350px; border: none; overflow: hidden; background: #fff;" frameborder="0" scrolling="no"></iframe>
+                        
+                        <!-- Custom AliExpress Affiliate Widget -->
+                        <div class="ali-embed-widget">
+                            <div class="ali-embed-img">
+                                <span class="ali-placeholder-text">[Insert AliExpress Image URL Here]</span>
+                            </div>
+                            <div class="ali-embed-content">
+                                <div class="ali-title">YXO YUXINOU Samsung LM301H Quantum Dimmable Board 480W</div>
+                                <div class="ali-rating">★★★★☆ <span>(845 Reviews)</span></div>
+                                <div class="ali-price">US $189.90</div>
+                                <!-- Notice the tracking ID parameter in the href -->
+                                <a href="https://aliexpress.com/item/1005003312984572.html?tracking_id=plantprotocol" target="_blank" rel="nofollow" class="ali-btn">Buy on AliExpress</a>
+                            </div>
+                        </div>
+                        
                         <div class="verdict-box">
                             <div class="score">9.5</div>
                             <div class="score-label">PlantProtocol Score</div>
@@ -575,7 +581,7 @@
                             </div>
                         </div>
                         
-                        <a href="#" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
+                        <a href="https://aliexpress.com/item/1005003312984572.html?tracking_id=plantprotocol" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
                     </div>
                 </div>
             </section>
