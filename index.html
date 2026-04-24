@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PlantProtocol: A premier digital community dedicated to advanced homesteading, sustainable gardening, and modern self-sufficiency.">
+    <title>PlantProtocol | Homesteading & Gardening</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0b110c;
+            --accent-green: #39FF14;
+            --accent-dark-green: #1a4d26;
+            --text-main: #f0fdf4;
+            --text-muted: #9ca3af;
+            --glass-bg: rgba(26, 77, 38, 0.15);
+            --glass-border: rgba(57, 255, 20, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(57, 255, 20, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(26, 77, 38, 0.15) 0%, transparent 50%);
+        }
+
+        /* Abstract Background Elements */
+        .glow-orb {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--accent-green);
+            filter: blur(150px);
+            opacity: 0.1;
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .orb-1 { top: -100px; left: -100px; }
+        .orb-2 { bottom: 10%; right: -50px; animation-delay: -5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(30px) scale(1.1); }
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff 0%, var(--accent-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            color: var(--text-main);
+        }
+
+        /* Layout & Components */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent-green);
+        }
+
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            transform: translateY(0);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(57, 255, 20, 0.4);
+        }
+
+        .card-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Call to Action Button */
+        .btn-glow {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #000;
+            background: var(--accent-green);
+            text-decoration: none;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 40px rgba(57, 255, 20, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 6rem;
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            margin: 0 1rem;
+        }
+
+        footer a:hover {
+            color: var(--accent-green);
+        }
+        
+        /* Subtle Entrance Animation */
+        .fade-up {
+            animation: fadeUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <div class="container">
+        <nav>
+            <div class="logo">Plant<span>Protocol</span></div>
+        </nav>
+
+        <section class="hero">
+            <h1 class="fade-up">Eat. Grow. Thrive.</h1>
+            <p class="hero-subtitle fade-up delay-1">Pioneering the modern homesteading movement through sustainable practices, high-yield gardening, and self-sufficiency education.</p>
+            
+            <div class="glass-card fade-up delay-2">
+                <h2>The Protocol</h2>
+                <div class="card-content">
+                    <p>Welcome to PlantProtocol. We are a digital media collective entirely focused on equipping the modern individual with the knowledge to grow their own food, build sustainable systems, and thrive independently.</p>
+                    <p>From deep-dive architectural plans for raised beds to quick-hit vertical videos demonstrating off-grid preservation techniques, our content pipeline is designed for maximum educational density.</p>
+                    <div style="margin-top: 2rem;">
+                        <a href="https://www.youtube.com/@PlantProtocol" class="btn-glow" target="_blank">Watch the Series</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 PlantProtocol. All rights reserved.</p>
+            <div style="margin-top: 1rem;">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="https://www.youtube.com/@PlantProtocol">YouTube</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
