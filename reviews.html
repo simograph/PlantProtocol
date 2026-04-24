@@ -241,19 +241,10 @@
             position: relative;
         }
         
-        /* Direct image embed from AliExpress CDN */
         .ali-embed-img img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-        }
-        
-        .ali-placeholder-text {
-            position: absolute;
-            color: #999;
-            font-size: 0.9rem;
-            text-align: center;
-            padding: 1rem;
         }
 
         .ali-embed-content {
@@ -279,6 +270,13 @@
             font-weight: 800;
             color: var(--ali-orange);
             font-family: 'Outfit', sans-serif;
+        }
+
+        .ali-original-price {
+            font-size: 1rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 0.5rem;
         }
         
         .ali-rating {
@@ -424,133 +422,78 @@
 
             <section class="intro">
                 <p>When you transition from seasonal outdoor gardening to high-yield indoor vertical farming, the primary bottleneck you will hit is photon density. Buying name-brand domestic lights often means paying a massive markup for the exact same components manufactured overseas.</p>
-                <p>By sourcing directly from AliExpress, you can acquire high-end Samsung LM301B/H diodes and Meanwell drivers at a fraction of the cost. After rigorous testing, here are the top three setups that offer the highest PPFD per dollar without compromising on safety or yield.</p>
+                <p>By sourcing directly from AliExpress, you can acquire high-end diodes and drivers at a fraction of the cost. Through our PlantProtocol affiliate integration, we have dynamically pulled the current top three live setups that offer the highest PPFD per dollar without compromising on safety or yield.</p>
+            </section>
+
+            <!-- Quick Recommendations Grid -->
+            <section class="quick-recommendations">
+                <div class="quick-picks" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+                    <!-- Pick 1 -->
+                    <div class="pick-card" style="background: var(--glass-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;">
+                        <div class="pick-badge badge-overall" style="background: var(--badge-gold); text-align: center; font-weight: 700; padding: 0.5rem; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; color: #000;">Best Overall Value</div>
+                        <div class="pick-image-container" style="height: 200px; overflow: hidden; background: #fff; position: relative;">
+                            <img src="https://ae-pic-a1.aliexpress-media.com/kf/S8be9e9f4dbdd458a887d24e9c2c5cb05U.jpg" alt="250W Quantum Board" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="pick-content" style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div class="pick-title" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.2;">250W Quantum Board Seedling Lamp</div>
+                                <div class="pick-bottom-line" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; font-style: italic;">"The sweet spot of price and performance, perfect for a standard 3x3 grow tent."</div>
+                            </div>
+                            <a href="#light-1" class="btn-glow" style="margin-bottom: 0.5rem; background: rgba(255,255,255,0.1); color: #fff; box-shadow: none;">Read Review</a>
+                            <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4mtS1ouKsVAxVkORKJ1lWXCSp4gB8xYwvqzx5l36XDdgNMXjpOC2nyN2l0g5NY7Ui1N8uz4W3jgzNDNATZIHoJcgMiDJT3eOsiyVh9yUGodM6yoyzBvkryyMC6lzJmA6VOp86y980k9SzV2EDhmOxQysYTzP0R98fZA68QSrKEg1AYsGY8RcHMDEovcXdHaZZxePFt1LS4zQzusKL9eWdznGPxix4lpe0CiFonLcoJAE4I1bbC7qihHKtLUaUDI7NmWqJvanxgN277PruEGgsJV4ZzdnurlTVlqmVypnDfXIJHoUwGRcqNMmlBPcO1Fa1mQ4qvr8VAc0mb3vFp9YzeZzQfhJyXoMdvDzCSuo255MxKrbVJ6lUskawffLborNfIWZVQMEfZdYO9pra87bRXdvfodbIEkkwpJFNOvx2eGfRDhtZjyAI1fbApIOKh3w1g4wPJlR2nwD1l9NHgJ6wbe9rRLPHL3xTfcbuRl4lX3wZbplRGV0fY3wJDDqf8wA616ZuRm2yYqHOOIj4thEhxYNc4aU3mIGwDHbsqNIbTicpw6bZTZ0Ot6Da444QQqW91Acp5A6av6m3vSC20pIRTA9rx4VFTFeCi0fF4fYcMgPLv1cwJJSvkapx8VRLWDebk9DIjf3SNCkbqPWKNNk66Rqy3pDPWLeCDtKFdtXUseaD7qZIX9mGf0AxOjYMfEKP05dkSM2txWy1x" target="_blank" rel="nofollow" class="btn-glow">Check on AliExpress</a>
+                        </div>
+                    </div>
+
+                    <!-- Pick 2 -->
+                    <div class="pick-card" style="background: var(--glass-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;">
+                        <div class="pick-badge badge-yield" style="background: var(--accent-green); text-align: center; font-weight: 700; padding: 0.5rem; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; color: #000;">Highest Yield Potential</div>
+                        <div class="pick-image-container" style="height: 200px; overflow: hidden; background: #fff; position: relative;">
+                            <img src="https://ae-pic-a1.aliexpress-media.com/kf/S8aa87a4e971e4804bcc1b91f58c2194au.jpg" alt="800W Full Spectrum LED" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="pick-content" style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div class="pick-title" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.2;">800W Full Spectrum Cultivation Lamp</div>
+                                <div class="pick-bottom-line" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; font-style: italic;">"Massive true wattage for serious indoor fruiting."</div>
+                            </div>
+                            <a href="#light-2" class="btn-glow" style="margin-bottom: 0.5rem; background: rgba(255,255,255,0.1); color: #fff; box-shadow: none;">Read Review</a>
+                            <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4Eybn5Q5CTTVV5CiYUgYPxONegQ7qH7ERVCrc40vY1k7hCucGEE3KgIVEHIa6We0Xoz7y5jkC8auHu7ygm4Pv4EwGbCUvmI4mkrw7RPrnjqXYolAizcZQrS3pdAdD6IqeRVjBXR6RU5JiUUH1TFQRURX4AwLZSmA6trXnVVDSyHtWe9lAxbTuSBc4YWwrukO06VEbYS6Iy0XDSow8YdPtxFmxU0nzjpWCPEVqRG6S6fBrOM6scRZzfEriIlXnrdBNqEdCy85vuWiDRYfNLCqSy0dODja6gmPzvgvfhqqKJU8ajLV7MLJCeYNH1AC1EsfL8AjcXqG9r7nB8zT96pSXUK16rL7gvPR8WzY9b1DKZ9fJox0ja6Eazq0qdmjezp1sDa1bDkCFcvcFXMykVhC3PYVErOMxVIpRY8BhpBlmCN2ZwWjg3vnToBj0sYSvLRYbqXMSbDp7wGjRshdymPPm3CuDjxIIw1rrJdKaC1Eo0zUCJMQKxUDaeNrQXVmK3CTqnnwfcx3y9x8in4ZCcpJX5bIvon2odNVyz5JW9zrEJckcPT7G8OnBS0rp2zEZJDiJWSr043Lh26Sb9T2svYel5w2oCCxWWwOwbusX4DFwVFBLar2iJBDYD6IMyBqXA15qQPd5JCxO2d4ZvTnkrei29YYp8rtgMNXP1nNoB34kIX68sI6WAXKTxRvp5CVeXWazoVJw7P4jXUyLP" target="_blank" rel="nofollow" class="btn-glow">Check on AliExpress</a>
+                        </div>
+                    </div>
+
+                    <!-- Pick 3 -->
+                    <div class="pick-card" style="background: var(--glass-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;">
+                        <div class="pick-badge badge-budget" style="background: var(--badge-blue); text-align: center; font-weight: 700; padding: 0.5rem; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; color: #000;">Best Budget Pick</div>
+                        <div class="pick-image-container" style="height: 200px; overflow: hidden; background: #fff; position: relative;">
+                            <img src="https://ae-pic-a1.aliexpress-media.com/kf/S4f707012fd0e4c0a860df3d46b1f52c3E.jpg" alt="5V USB Quantum Board" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="pick-content" style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div class="pick-title" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.2;">5V USB Quantum Board Seed Starter</div>
+                                <div class="pick-bottom-line" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; font-style: italic;">"An incredibly affordable USB panel perfect for apartment seed starting."</div>
+                            </div>
+                            <a href="#light-3" class="btn-glow" style="margin-bottom: 0.5rem; background: rgba(255,255,255,0.1); color: #fff; box-shadow: none;">Read Review</a>
+                            <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4nymuhn88nxdpDiVsZ558MhmHyhCNqDp99hy2NG1rn1jTePxrBrwKxChSgnJUAyItHfvTkL8WKS88HMK06pB6AjOlEuhI6AJKr9ZYooKfh46gwfHVmVw445asyJ1dqoaL3KjN4jlTMUeUC9epVBadcRApn91oUE7p142xaSczi3luhxZ71hA4gslB6BnuoxSuZevWxicbRGJb0d5IptdaFh4VpMCrRQL8Msg1i8VJOeEbxKKkUxbai8SbNFgTjgMuEFG2gWwXSrRLXFsad24teMtG8GAaskQVsEEr6HVz48lQFXSwD3XRV1qXOQHSw9O1d5LBuEKqICeG76CAmnucWG7zQkgrmtit3toJz5eWyC8orhqVPeCcD1PmDYM0k3GaO3ed42MMcRC64LZubmtzMR0LsPCT4Mg4DktDYuAIYdSIeVOg62pRyokWQaYJLFG7Y8gs5mRvbQLaYYb9OkksO6d1huKloUGF4mo47Zyccdy3HUKIy4tQhXoJMwfKvKEg6IFovRlqtBexuDTC8FQR5PUhhZ88fkx2NEk6scXT1UyFRvN5SAyapyncdzCCGNa4xSxeyuQK3yv2SzMmexf12RxU6EhOfnwvjd0vcJoNRsd5FUPfGLeZZh0KJVOfZcuJITHs5EtfFgDzrgNgGjASeT4yhcy1KPMAI1EbvTGEz4PFsdSNf1pvPwXVuw6UAD9WJ7l2Zx4DJlwvN" target="_blank" rel="nofollow" class="btn-glow">Check on AliExpress</a>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section class="deep-dive-section">
                 
                 <!-- Review 1 -->
-                <div id="mastergrow" class="review-block">
+                <div id="light-1" class="review-block">
                     <div class="review-left">
-                        
-                        <!-- Custom AliExpress Affiliate Widget -->
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
-                                <img src="https://placehold.co/400x400/111/39FF14?text=Product+Image" alt="AliExpress Product">
+                                <img src="https://ae-pic-a1.aliexpress-media.com/kf/S8be9e9f4dbdd458a887d24e9c2c5cb05U.jpg" alt="250W Quantum Board">
                             </div>
                             <div class="ali-embed-content">
-                                <div class="ali-title">MasterGrow Full Spectrum LED Grow Light 300W For Indoor Plants</div>
-                                <div class="ali-rating">★★★★☆ <span>(1,240 Reviews)</span></div>
-                                <div class="ali-price">US $78.50</div>
-                                <!-- Notice the tracking ID parameter in the href -->
-                                <a href="https://www.aliexpress.com/w/wholesale-mastergrow-led-grow-light.html?tracking_id=plantprotocol" target="_blank" rel="nofollow" class="ali-btn">Buy on AliExpress</a>
+                                <div class="ali-title">250W Full Spectrum Plant Grow Light LED Quantum Board Seedling Cultivation Lamp Greenhouse Tent Hydroponic Flower Fill Lighting</div>
+                                <div class="ali-rating">★★★★☆ <span>(Top Rated)</span></div>
+                                <div class="ali-price">US $26.68 <span class="ali-original-price">$53.37</span></div>
+                                <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4mtS1ouKsVAxVkORKJ1lWXCSp4gB8xYwvqzx5l36XDdgNMXjpOC2nyN2l0g5NY7Ui1N8uz4W3jgzNDNATZIHoJcgMiDJT3eOsiyVh9yUGodM6yoyzBvkryyMC6lzJmA6VOp86y980k9SzV2EDhmOxQysYTzP0R98fZA68QSrKEg1AYsGY8RcHMDEovcXdHaZZxePFt1LS4zQzusKL9eWdznGPxix4lpe0CiFonLcoJAE4I1bbC7qihHKtLUaUDI7NmWqJvanxgN277PruEGgsJV4ZzdnurlTVlqmVypnDfXIJHoUwGRcqNMmlBPcO1Fa1mQ4qvr8VAc0mb3vFp9YzeZzQfhJyXoMdvDzCSuo255MxKrbVJ6lUskawffLborNfIWZVQMEfZdYO9pra87bRXdvfodbIEkkwpJFNOvx2eGfRDhtZjyAI1fbApIOKh3w1g4wPJlR2nwD1l9NHgJ6wbe9rRLPHL3xTfcbuRl4lX3wZbplRGV0fY3wJDDqf8wA616ZuRm2yYqHOOIj4thEhxYNc4aU3mIGwDHbsqNIbTicpw6bZTZ0Ot6Da444QQqW91Acp5A6av6m3vSC20pIRTA9rx4VFTFeCi0fF4fYcMgPLv1cwJJSvkapx8VRLWDebk9DIjf3SNCkbqPWKNNk66Rqy3pDPWLeCDtKFdtXUseaD7qZIX9mGf0AxOjYMfEKP05dkSM2txWy1x" target="_blank" rel="nofollow" class="ali-btn">Buy on AliExpress</a>
                             </div>
                         </div>
-                        
-                        <div class="verdict-box">
-                            <div class="score">9.2</div>
-                            <div class="score-label">PlantProtocol Score</div>
-                        </div>
-                    </div>
-                    <div class="review-right">
-                        <div class="review-title-area">
-                            <h3>MasterGrow Full Spectrum 300W</h3>
-                            <p style="color: var(--text-muted); font-size: 0.9rem;">Best Overall Value • Est. Price: $75 - $90</p>
-                        </div>
-                        <p>The MasterGrow series steps up the game by offering serious wattage for vegetative growth and moderate fruiting. It includes IR and UV diodes which are essential for resin production and plant immune responses. At under $100 for true 300W draw, it's an absolute steal for anyone building a standard 3x3 footprint tent.</p>
-                        
-                        <div class="pros-cons">
-                            <div class="pros">
-                                <h4>Pros</h4>
-                                <ul>
-                                    <li>Includes UV & IR diodes</li>
-                                    <li>Great spectrum for full lifecycle</li>
-                                    <li>Solid industrial casing</li>
-                                </ul>
-                            </div>
-                            <div class="cons">
-                                <h4>Cons</h4>
-                                <ul>
-                                    <li>Cooling fans can be slightly noisy</li>
-                                    <li>Heavier than quantum boards</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <a href="https://www.aliexpress.com/w/wholesale-mastergrow-led-grow-light.html?tracking_id=plantprotocol" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
-                    </div>
-                </div>
-
-                <!-- Review 2 -->
-                <div id="mingben" class="review-block">
-                    <div class="review-left">
-                        
-                        <!-- Custom AliExpress Affiliate Widget -->
-                        <div class="ali-embed-widget">
-                            <div class="ali-embed-img">
-                                <img src="https://placehold.co/400x400/111/39FF14?text=Product+Image" alt="AliExpress Product">
-                            </div>
-                            <div class="ali-embed-content">
-                                <div class="ali-title">Ming&Ben LED Grow Light Full Spectrum Phytolamp 100W</div>
-                                <div class="ali-rating">★★★★★ <span>(3,892 Reviews)</span></div>
-                                <div class="ali-price">US $26.15</div>
-                                <!-- Notice the tracking ID parameter in the href -->
-                                <a href="https://www.aliexpress.com/w/wholesale-ming-ben-led-grow-light.html?tracking_id=plantprotocol" target="_blank" rel="nofollow" class="ali-btn">Buy on AliExpress</a>
-                            </div>
-                        </div>
-                        
-                        <div class="verdict-box">
-                            <div class="score">8.5</div>
-                            <div class="score-label">PlantProtocol Score</div>
-                        </div>
-                    </div>
-                    <div class="review-right">
-                        <div class="review-title-area">
-                            <h3>Ming&Ben Fanless 100W</h3>
-                            <p style="color: var(--text-muted); font-size: 0.9rem;">Best Budget Pick • Est. Price: $25 - $40</p>
-                        </div>
-                        <p>The Ming&Ben 100W panel is the undisputed champion of budget growing. It utilizes a fanless aluminum heat sink design, meaning it has zero noise output—perfect for apartment homesteaders starting seeds or growing microgreens in living spaces.</p>
-                        
-                        <div class="pros-cons">
-                            <div class="pros">
-                                <h4>Pros</h4>
-                                <ul>
-                                    <li>Incredibly affordable</li>
-                                    <li>Silent, fanless design</li>
-                                    <li>Lightweight and easy to hang</li>
-                                </ul>
-                            </div>
-                            <div class="cons">
-                                <h4>Cons</h4>
-                                <ul>
-                                    <li>Insufficient for flowering large plants</li>
-                                    <li>Basic unbranded diodes</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <a href="https://www.aliexpress.com/w/wholesale-ming-ben-led-grow-light.html?tracking_id=plantprotocol" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
-                    </div>
-                </div>
-
-                <!-- Review 3 -->
-                <div id="yxo" class="review-block">
-                    <div class="review-left">
-                        
-                        <!-- Custom AliExpress Affiliate Widget -->
-                        <div class="ali-embed-widget">
-                            <div class="ali-embed-img">
-                                <img src="https://placehold.co/400x400/111/39FF14?text=Product+Image" alt="AliExpress Product">
-                            </div>
-                            <div class="ali-embed-content">
-                                <div class="ali-title">YXO YUXINOU Samsung LM301H Quantum Dimmable Board 480W</div>
-                                <div class="ali-rating">★★★★☆ <span>(845 Reviews)</span></div>
-                                <div class="ali-price">US $189.90</div>
-                                <!-- Notice the tracking ID parameter in the href -->
-                                <a href="https://www.aliexpress.com/w/wholesale-yxo-yuxinou-led-grow-light.html?tracking_id=plantprotocol" target="_blank" rel="nofollow" class="ali-btn">Buy on AliExpress</a>
-                            </div>
-                        </div>
-                        
                         <div class="verdict-box">
                             <div class="score">9.5</div>
                             <div class="score-label">PlantProtocol Score</div>
@@ -558,30 +501,125 @@
                     </div>
                     <div class="review-right">
                         <div class="review-title-area">
-                            <h3>YXO YUXINOU 480W Quantum Board</h3>
-                            <p style="color: var(--text-muted); font-size: 0.9rem;">Highest Yield Potential • Est. Price: $180 - $220</p>
+                            <h3>250W Quantum Board Seedling Lamp</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Best Overall Value • Est. Price: $26.68</p>
                         </div>
-                        <p>This is where you get domestic name-brand performance for factory-direct prices. The YXO YUXINOU board uses genuine Samsung LM301H diodes (the horticultural standard) and an authentic Meanwell driver. It delivers massive, uniform light output capable of maxing out the DLI (Daily Light Integral) of high-yield crops like tomatoes or peppers.</p>
+                        <p>This 250W Quantum Board is the absolute sweet spot for an indoor homesteader. Coming in at under $30, it delivers a massive discount from its original $53.37 MSRP. Quantum boards are currently the industry standard because of their even light distribution and incredible efficiency. The full spectrum array makes it ideal for transitioning seedlings directly into early vegetative growth.</p>
                         
                         <div class="pros-cons">
                             <div class="pros">
                                 <h4>Pros</h4>
                                 <ul>
-                                    <li>Genuine Samsung LM301H Diodes</li>
-                                    <li>Authentic Meanwell Driver</li>
-                                    <li>Massive uniform light output</li>
+                                    <li>Excellent value at $26.68</li>
+                                    <li>Wide, even light spread</li>
+                                    <li>Thin and lightweight for any tent</li>
                                 </ul>
                             </div>
                             <div class="cons">
                                 <h4>Cons</h4>
                                 <ul>
-                                    <li>Runs hot at 100% capacity</li>
-                                    <li>Requires active tent exhaust</li>
+                                    <li>Not enough penetration for tall flowering plants</li>
                                 </ul>
                             </div>
                         </div>
                         
-                        <a href="https://www.aliexpress.com/w/wholesale-yxo-yuxinou-led-grow-light.html?tracking_id=plantprotocol" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
+                        <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4mtS1ouKsVAxVkORKJ1lWXCSp4gB8xYwvqzx5l36XDdgNMXjpOC2nyN2l0g5NY7Ui1N8uz4W3jgzNDNATZIHoJcgMiDJT3eOsiyVh9yUGodM6yoyzBvkryyMC6lzJmA6VOp86y980k9SzV2EDhmOxQysYTzP0R98fZA68QSrKEg1AYsGY8RcHMDEovcXdHaZZxePFt1LS4zQzusKL9eWdznGPxix4lpe0CiFonLcoJAE4I1bbC7qihHKtLUaUDI7NmWqJvanxgN277PruEGgsJV4ZzdnurlTVlqmVypnDfXIJHoUwGRcqNMmlBPcO1Fa1mQ4qvr8VAc0mb3vFp9YzeZzQfhJyXoMdvDzCSuo255MxKrbVJ6lUskawffLborNfIWZVQMEfZdYO9pra87bRXdvfodbIEkkwpJFNOvx2eGfRDhtZjyAI1fbApIOKh3w1g4wPJlR2nwD1l9NHgJ6wbe9rRLPHL3xTfcbuRl4lX3wZbplRGV0fY3wJDDqf8wA616ZuRm2yYqHOOIj4thEhxYNc4aU3mIGwDHbsqNIbTicpw6bZTZ0Ot6Da444QQqW91Acp5A6av6m3vSC20pIRTA9rx4VFTFeCi0fF4fYcMgPLv1cwJJSvkapx8VRLWDebk9DIjf3SNCkbqPWKNNk66Rqy3pDPWLeCDtKFdtXUseaD7qZIX9mGf0AxOjYMfEKP05dkSM2txWy1x" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div id="light-2" class="review-block">
+                    <div class="review-left">
+                        <div class="ali-embed-widget">
+                            <div class="ali-embed-img">
+                                <img src="https://ae-pic-a1.aliexpress-media.com/kf/S8aa87a4e971e4804bcc1b91f58c2194au.jpg" alt="800W Full Spectrum LED">
+                            </div>
+                            <div class="ali-embed-content">
+                                <div class="ali-title">800W LED Full Spectrum Plant Grow Light Indoor Flower Hydroponics Cultivation Lamp Greenhouse Tent Vegetables LED Fill Lighting</div>
+                                <div class="ali-rating">★★★★★ <span>(Premium Choice)</span></div>
+                                <div class="ali-price">US $31.38 <span class="ali-original-price">$62.76</span></div>
+                                <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4Eybn5Q5CTTVV5CiYUgYPxONegQ7qH7ERVCrc40vY1k7hCucGEE3KgIVEHIa6We0Xoz7y5jkC8auHu7ygm4Pv4EwGbCUvmI4mkrw7RPrnjqXYolAizcZQrS3pdAdD6IqeRVjBXR6RU5JiUUH1TFQRURX4AwLZSmA6trXnVVDSyHtWe9lAxbTuSBc4YWwrukO06VEbYS6Iy0XDSow8YdPtxFmxU0nzjpWCPEVqRG6S6fBrOM6scRZzfEriIlXnrdBNqEdCy85vuWiDRYfNLCqSy0dODja6gmPzvgvfhqqKJU8ajLV7MLJCeYNH1AC1EsfL8AjcXqG9r7nB8zT96pSXUK16rL7gvPR8WzY9b1DKZ9fJox0ja6Eazq0qdmjezp1sDa1bDkCFcvcFXMykVhC3PYVErOMxVIpRY8BhpBlmCN2ZwWjg3vnToBj0sYSvLRYbqXMSbDp7wGjRshdymPPm3CuDjxIIw1rrJdKaC1Eo0zUCJMQKxUDaeNrQXVmK3CTqnnwfcx3y9x8in4ZCcpJX5bIvon2odNVyz5JW9zrEJckcPT7G8OnBS0rp2zEZJDiJWSr043Lh26Sb9T2svYel5w2oCCxWWwOwbusX4DFwVFBLar2iJBDYD6IMyBqXA15qQPd5JCxO2d4ZvTnkrei29YYp8rtgMNXP1nNoB34kIX68sI6WAXKTxRvp5CVeXWazoVJw7P4jXUyLP" target="_blank" rel="nofollow" class="ali-btn">Buy on AliExpress</a>
+                            </div>
+                        </div>
+                        <div class="verdict-box">
+                            <div class="score">9.2</div>
+                            <div class="score-label">PlantProtocol Score</div>
+                        </div>
+                    </div>
+                    <div class="review-right">
+                        <div class="review-title-area">
+                            <h3>800W Full Spectrum Cultivation Lamp</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Highest Yield Potential • Est. Price: $31.38</p>
+                        </div>
+                        <p>When you are ready to max out the Daily Light Integral (DLI) of your heavy fruiting crops, you need wattage. This 800W equivalent LED setup delivers deep canopy penetration required for tomatoes, peppers, and cucumbers. At only $31.38, it proves that you do not need to spend hundreds of dollars to outfit a full production greenhouse.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h4>Pros</h4>
+                                <ul>
+                                    <li>Massive light output for fruiting</li>
+                                    <li>Incredible 50% discount currently active</li>
+                                    <li>Full spectrum output</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h4>Cons</h4>
+                                <ul>
+                                    <li>May require tent exhaust due to heat</li>
+                                    <li>Overkill for simple seed starting</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4Eybn5Q5CTTVV5CiYUgYPxONegQ7qH7ERVCrc40vY1k7hCucGEE3KgIVEHIa6We0Xoz7y5jkC8auHu7ygm4Pv4EwGbCUvmI4mkrw7RPrnjqXYolAizcZQrS3pdAdD6IqeRVjBXR6RU5JiUUH1TFQRURX4AwLZSmA6trXnVVDSyHtWe9lAxbTuSBc4YWwrukO06VEbYS6Iy0XDSow8YdPtxFmxU0nzjpWCPEVqRG6S6fBrOM6scRZzfEriIlXnrdBNqEdCy85vuWiDRYfNLCqSy0dODja6gmPzvgvfhqqKJU8ajLV7MLJCeYNH1AC1EsfL8AjcXqG9r7nB8zT96pSXUK16rL7gvPR8WzY9b1DKZ9fJox0ja6Eazq0qdmjezp1sDa1bDkCFcvcFXMykVhC3PYVErOMxVIpRY8BhpBlmCN2ZwWjg3vnToBj0sYSvLRYbqXMSbDp7wGjRshdymPPm3CuDjxIIw1rrJdKaC1Eo0zUCJMQKxUDaeNrQXVmK3CTqnnwfcx3y9x8in4ZCcpJX5bIvon2odNVyz5JW9zrEJckcPT7G8OnBS0rp2zEZJDiJWSr043Lh26Sb9T2svYel5w2oCCxWWwOwbusX4DFwVFBLar2iJBDYD6IMyBqXA15qQPd5JCxO2d4ZvTnkrei29YYp8rtgMNXP1nNoB34kIX68sI6WAXKTxRvp5CVeXWazoVJw7P4jXUyLP" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div id="light-3" class="review-block">
+                    <div class="review-left">
+                        <div class="ali-embed-widget">
+                            <div class="ali-embed-img">
+                                <img src="https://ae-pic-a1.aliexpress-media.com/kf/S4f707012fd0e4c0a860df3d46b1f52c3E.jpg" alt="5V USB Quantum Board">
+                            </div>
+                            <div class="ali-embed-content">
+                                <div class="ali-title">5V Full Spectrum LED Indoor Plant Grow Light Quantum Board Seeds Cultivation Lights USB Greenhouse Vegs Hydroponic Fill Lighting</div>
+                                <div class="ali-rating">★★★★☆ <span>(Budget Pick)</span></div>
+                                <div class="ali-price">US $9.06 <span class="ali-original-price">$18.12</span></div>
+                                <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4nymuhn88nxdpDiVsZ558MhmHyhCNqDp99hy2NG1rn1jTePxrBrwKxChSgnJUAyItHfvTkL8WKS88HMK06pB6AjOlEuhI6AJKr9ZYooKfh46gwfHVmVw445asyJ1dqoaL3KjN4jlTMUeUC9epVBadcRApn91oUE7p142xaSczi3luhxZ71hA4gslB6BnuoxSuZevWxicbRGJb0d5IptdaFh4VpMCrRQL8Msg1i8VJOeEbxKKkUxbai8SbNFgTjgMuEFG2gWwXSrRLXFsad24teMtG8GAaskQVsEEr6HVz48lQFXSwD3XRV1qXOQHSw9O1d5LBuEKqICeG76CAmnucWG7zQkgrmtit3toJz5eWyC8orhqVPeCcD1PmDYM0k3GaO3ed42MMcRC64LZubmtzMR0LsPCT4Mg4DktDYuAIYdSIeVOg62pRyokWQaYJLFG7Y8gs5mRvbQLaYYb9OkksO6d1huKloUGF4mo47Zyccdy3HUKIy4tQhXoJMwfKvKEg6IFovRlqtBexuDTC8FQR5PUhhZ88fkx2NEk6scXT1UyFRvN5SAyapyncdzCCGNa4xSxeyuQK3yv2SzMmexf12RxU6EhOfnwvjd0vcJoNRsd5FUPfGLeZZh0KJVOfZcuJITHs5EtfFgDzrgNgGjASeT4yhcy1KPMAI1EbvTGEz4PFsdSNf1pvPwXVuw6UAD9WJ7l2Zx4DJlwvN" target="_blank" rel="nofollow" class="ali-btn">Buy on AliExpress</a>
+                            </div>
+                        </div>
+                        <div class="verdict-box">
+                            <div class="score">8.8</div>
+                            <div class="score-label">PlantProtocol Score</div>
+                        </div>
+                    </div>
+                    <div class="review-right">
+                        <div class="review-title-area">
+                            <h3>5V USB Quantum Board Seed Starter</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Best Budget Pick • Est. Price: $9.06</p>
+                        </div>
+                        <p>Living in an apartment shouldn't stop you from urban homesteading. This 5V USB-powered Quantum Board is the ultimate micro-setup. At an unbelievable $9.06, you can run this directly off a power bank or standard USB charger. It's completely silent, emits virtually no heat, and is absolutely perfect for propagating clones or starting seeds on a bookshelf.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h4>Pros</h4>
+                                <ul>
+                                    <li>Can be powered by any USB port</li>
+                                    <li>Cheapest entry point into indoor growing</li>
+                                    <li>Zero noise and zero heat issues</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h4>Cons</h4>
+                                <ul>
+                                    <li>Very low PPFD</li>
+                                    <li>Only suitable for microgreens and seedlings</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4nymuhn88nxdpDiVsZ558MhmHyhCNqDp99hy2NG1rn1jTePxrBrwKxChSgnJUAyItHfvTkL8WKS88HMK06pB6AjOlEuhI6AJKr9ZYooKfh46gwfHVmVw445asyJ1dqoaL3KjN4jlTMUeUC9epVBadcRApn91oUE7p142xaSczi3luhxZ71hA4gslB6BnuoxSuZevWxicbRGJb0d5IptdaFh4VpMCrRQL8Msg1i8VJOeEbxKKkUxbai8SbNFgTjgMuEFG2gWwXSrRLXFsad24teMtG8GAaskQVsEEr6HVz48lQFXSwD3XRV1qXOQHSw9O1d5LBuEKqICeG76CAmnucWG7zQkgrmtit3toJz5eWyC8orhqVPeCcD1PmDYM0k3GaO3ed42MMcRC64LZubmtzMR0LsPCT4Mg4DktDYuAIYdSIeVOg62pRyokWQaYJLFG7Y8gs5mRvbQLaYYb9OkksO6d1huKloUGF4mo47Zyccdy3HUKIy4tQhXoJMwfKvKEg6IFovRlqtBexuDTC8FQR5PUhhZ88fkx2NEk6scXT1UyFRvN5SAyapyncdzCCGNa4xSxeyuQK3yv2SzMmexf12RxU6EhOfnwvjd0vcJoNRsd5FUPfGLeZZh0KJVOfZcuJITHs5EtfFgDzrgNgGjASeT4yhcy1KPMAI1EbvTGEz4PFsdSNf1pvPwXVuw6UAD9WJ7l2Zx4DJlwvN" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
                     </div>
                 </div>
             </section>
