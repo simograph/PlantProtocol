@@ -9,7 +9,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -22,6 +22,8 @@
             --glass-border: rgba(57, 255, 20, 0.2);
             --card-bg: rgba(15, 25, 18, 0.8);
             --ali-orange: #ff4747;
+            --badge-gold: #ffd700;
+            --badge-blue: #00d2ff;
         }
 
         * {
@@ -83,19 +85,18 @@
             margin-top: 3rem;
             margin-bottom: 1.5rem;
             color: #fff;
-            border-bottom: 1px solid var(--glass-border);
             padding-bottom: 0.5rem;
         }
 
         h3 {
             font-size: 1.5rem;
-            color: var(--accent-green);
-            margin-bottom: 1rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
         }
 
         /* Layout & Components */
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -138,7 +139,10 @@
         /* Blog Header */
         header.blog-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .meta-tags {
@@ -157,87 +161,89 @@
             border: 1px solid var(--glass-border);
         }
 
-        /* Glassmorphism Table */
-        .comparison-table-wrapper {
-            overflow-x: auto;
-            margin: 3rem 0;
-            border-radius: 16px;
+        .intro {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        /* Quick Picks Grid (Wirecutter Style) */
+        .quick-picks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .pick-card {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        th, td {
-            padding: 1.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        th {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 700;
-            color: #fff;
-            background: rgba(0,0,0,0.2);
-            font-size: 1.1rem;
-            white-space: nowrap;
-        }
-
-        td {
-            color: var(--text-muted);
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Product Highlight Feature */
-        .highlight {
-            color: var(--accent-green);
-            font-weight: 600;
-        }
-
-        /* Product Cards */
-        .product-card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
             border-radius: 16px;
-            padding: 2.5rem;
-            margin-bottom: 2.5rem;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
         }
 
-        .product-card:hover {
+        .pick-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(57, 255, 20, 0.4);
+            border-color: var(--accent-green);
         }
-        
-        .pros-cons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 1.5rem 0;
-            background: rgba(0,0,0,0.3);
+
+        .pick-badge {
+            text-align: center;
+            font-weight: 700;
+            padding: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            color: #000;
+        }
+
+        .badge-overall { background: var(--badge-gold); }
+        .badge-budget { background: var(--badge-blue); }
+        .badge-yield { background: var(--accent-green); }
+
+        .pick-image-container {
+            height: 200px;
+            overflow: hidden;
+            background: #000;
+            position: relative;
+        }
+
+        .pick-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .pick-content {
             padding: 1.5rem;
-            border-radius: 12px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        
-        .pros h4 { color: #39FF14; margin-bottom: 0.5rem; }
-        .cons h4 { color: #ff4d4d; margin-bottom: 0.5rem; }
-        
-        ul {
-            list-style-position: inside;
+
+        .pick-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .pick-bottom-line {
+            font-size: 0.9rem;
             color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-style: italic;
         }
 
         /* Call to Action Button */
         .btn-glow {
-            display: inline-block;
+            display: block;
             padding: 0.8rem 1.5rem;
             font-family: 'Outfit', sans-serif;
             font-weight: 700;
@@ -251,72 +257,95 @@
             box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
             transition: all 0.3s ease;
             text-align: center;
-            white-space: nowrap; /* Prevents text from breaking onto multiple lines */
-            min-width: 220px;
+            white-space: nowrap;
         }
 
         .btn-glow:hover {
             box-shadow: 0 0 30px rgba(57, 255, 20, 0.6);
             transform: scale(1.05);
         }
-        
-        /* AliExpress Styled Embed Widget */
-        .ali-embed-widget {
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
+
+        /* Deep Dive Professional Layout */
+        .deep-dive-section {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 3rem;
+        }
+
+        .review-block {
             display: flex;
-            max-width: 600px;
-            margin: 2rem 0;
+            gap: 3rem;
+            margin-bottom: 5rem;
+            background: var(--card-bg);
             border: 1px solid var(--glass-border);
-            color: #222;
+            border-radius: 20px;
+            padding: 2.5rem;
         }
-        .ali-embed-img {
-            width: 200px;
-            background: #f5f5f5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-right: 1px solid #eee;
+
+        .review-left {
+            flex: 0 0 35%;
         }
-        .ali-embed-content {
+
+        .review-right {
+            flex: 1;
+        }
+
+        .review-main-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 1.5rem;
+        }
+
+        .verdict-box {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
             padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .ali-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #111;
-        }
-        .ali-price {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--ali-orange);
-            font-family: 'Outfit', sans-serif;
-        }
-        .ali-rating {
-            color: #ffb700;
-            font-size: 1.2rem;
-            margin: 0.5rem 0;
-        }
-        .ali-btn {
-            background: var(--ali-orange);
-            color: #fff;
-            text-decoration: none;
-            padding: 0.6rem 1rem;
-            border-radius: 6px;
-            font-weight: 700;
+            border-radius: 12px;
             text-align: center;
-            display: block;
-            margin-top: 1rem;
-            transition: background 0.3s ease;
         }
-        .ali-btn:hover {
-            background: #d63333;
+
+        .score {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent-green);
+            font-family: 'Outfit', sans-serif;
+            line-height: 1;
+        }
+
+        .score-label {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .review-title-area {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+            background: rgba(0,0,0,0.3);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-green);
+        }
+        
+        .pros h4 { color: #39FF14; margin-bottom: 0.5rem; }
+        .cons h4 { color: #ff4d4d; margin-bottom: 0.5rem; }
+        
+        ul {
+            list-style-position: inside;
+            color: var(--text-muted);
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
         }
 
         /* Footer */
@@ -344,11 +373,12 @@
             margin-bottom: 1.2rem;
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+            .review-block { flex-direction: column; gap: 2rem; }
+            .review-left { flex: none; }
+        }
+        @media (max-width: 600px) {
             .pros-cons { grid-template-columns: 1fr; gap: 1rem; }
-            .meta-tags { flex-wrap: wrap; }
-            .ali-embed-widget { flex-direction: column; }
-            .ali-embed-img { width: 100%; height: 200px; border-right: none; border-bottom: 1px solid #eee; }
         }
     </style>
 </head>
@@ -377,140 +407,175 @@
 
             <section class="intro">
                 <p>When you transition from seasonal outdoor gardening to high-yield indoor vertical farming, the primary bottleneck you will hit is photon density. Buying name-brand domestic lights often means paying a massive markup for the exact same components manufactured overseas.</p>
-                <p>By sourcing directly from AliExpress, you can acquire high-end Samsung LM301B/H diodes and Meanwell drivers at a fraction of the cost. After testing multiple direct-from-factory models, we have narrowed down the top three setups that offer the highest PPFD per dollar without compromising on safety or yield.</p>
+                <p>By sourcing directly from AliExpress, you can acquire high-end Samsung LM301B/H diodes and Meanwell drivers at a fraction of the cost. After rigorous testing, here are the top three setups that offer the highest PPFD per dollar without compromising on safety or yield.</p>
             </section>
 
-            <section class="comparison">
-                <h2>Quick Comparison</h2>
-                <div class="comparison-table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Model</th>
-                                <th>True Wattage</th>
-                                <th>Best For</th>
-                                <th>Price Range</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="highlight">Ming&Ben LED Grow Light</span></td>
-                                <td>100W</td>
-                                <td>Seedlings & Microgreens</td>
-                                <td>$25 - $40</td>
-                                <td><a href="#" class="btn-glow">Check on AliExpress</a></td>
-                            </tr>
-                            <tr>
-                                <td><span class="highlight">MasterGrow Full Spectrum</span></td>
-                                <td>300W</td>
-                                <td>Standard 3x3 Grow Tents</td>
-                                <td>$75 - $90</td>
-                                <td><a href="#" class="btn-glow">Check on AliExpress</a></td>
-                            </tr>
-                            <tr>
-                                <td><span class="highlight">YXO YUXINOU Quantum Board</span></td>
-                                <td>480W</td>
-                                <td>High-Yield Fruiting Crops</td>
-                                <td>$180 - $220</td>
-                                <td><a href="#" class="btn-glow">Check on AliExpress</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <section class="deep-dive">
-                <h2>Deep Dive Reviews</h2>
-                
-                <div class="product-card">
-                    <h3>1. Ming&Ben LED Grow Light (Best Entry Level)</h3>
-                    <p>The Ming&Ben 100W panel is the undisputed champion of budget growing. It utilizes a fanless aluminum heat sink design, meaning it has zero noise output—perfect for apartment homesteaders starting seeds or growing microgreens.</p>
-                    <div class="pros-cons">
-                        <div class="pros">
-                            <h4>Pros</h4>
-                            <ul>
-                                <li>Incredibly affordable</li>
-                                <li>Silent, fanless design</li>
-                                <li>Lightweight and easy to hang</li>
-                            </ul>
+            <!-- Quick Recommendations Grid -->
+            <section class="quick-recommendations">
+                <div class="quick-picks">
+                    <!-- Pick 1 -->
+                    <div class="pick-card">
+                        <div class="pick-badge badge-overall">Best Overall Value</div>
+                        <div class="pick-image-container">
+                            <img src="images/value.png" alt="MasterGrow Full Spectrum">
                         </div>
-                        <div class="cons">
-                            <h4>Cons</h4>
-                            <ul>
-                                <li>Insufficient for flowering large plants</li>
-                                <li>Basic unbranded diodes</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div style="margin-top: 1.5rem;">
-                        <a href="#" class="btn-glow">Check on AliExpress</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <h3>2. MasterGrow Full Spectrum (Best Value)</h3>
-                    <p>The MasterGrow series steps up the game by offering serious wattage for vegetative growth and moderate fruiting. It includes IR and UV diodes which are essential for resin production and plant immune responses. At under $100 for true 300W draw, it's a steal.</p>
-                    
-                    <!-- AliExpress Mock Embed -->
-                    <div class="ali-embed-widget">
-                        <div class="ali-embed-img">
-                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                        </div>
-                        <div class="ali-embed-content">
+                        <div class="pick-content">
                             <div>
-                                <div class="ali-title">MasterGrow Full Spectrum LED Grow Light 300W For Indoor Plants</div>
-                                <div class="ali-rating">★★★★☆ <span>(1,240 Reviews)</span></div>
-                                <div class="ali-price">US $78.50</div>
+                                <div class="pick-title">MasterGrow Full Spectrum 300W</div>
+                                <div class="pick-bottom-line">"The sweet spot of price and performance, perfect for a standard 3x3 grow tent."</div>
                             </div>
-                            <a href="#" class="ali-btn">Buy Now on AliExpress</a>
+                            <a href="#mastergrow" class="btn-glow" style="margin-bottom: 0.5rem; background: rgba(255,255,255,0.1); color: #fff; box-shadow: none;">Read Review</a>
+                            <a href="#" class="btn-glow">Check on AliExpress</a>
                         </div>
                     </div>
-                    <!-- End Embed -->
-                    
-                    <div class="pros-cons">
-                        <div class="pros">
-                            <h4>Pros</h4>
-                            <ul>
-                                <li>Includes UV & IR diodes</li>
-                                <li>Great spectrum for full lifecycle</li>
-                                <li>Solid aluminum casing</li>
-                            </ul>
+
+                    <!-- Pick 2 -->
+                    <div class="pick-card">
+                        <div class="pick-badge badge-budget">Best Budget Pick</div>
+                        <div class="pick-image-container">
+                            <img src="images/budget.png" alt="Ming&Ben LED Grow Light">
                         </div>
-                        <div class="cons">
-                            <h4>Cons</h4>
-                            <ul>
-                                <li>Cooling fans can be slightly noisy</li>
-                            </ul>
+                        <div class="pick-content">
+                            <div>
+                                <div class="pick-title">Ming&Ben Fanless 100W</div>
+                                <div class="pick-bottom-line">"An incredibly affordable, completely silent panel perfect for apartment seed starting."</div>
+                            </div>
+                            <a href="#mingben" class="btn-glow" style="margin-bottom: 0.5rem; background: rgba(255,255,255,0.1); color: #fff; box-shadow: none;">Read Review</a>
+                            <a href="#" class="btn-glow">Check on AliExpress</a>
                         </div>
                     </div>
-                    <div style="margin-top: 1.5rem;">
-                        <a href="#" class="btn-glow">Check on AliExpress</a>
+
+                    <!-- Pick 3 -->
+                    <div class="pick-card">
+                        <div class="pick-badge badge-yield">Highest Yield Potential</div>
+                        <div class="pick-image-container">
+                            <img src="images/yield.png" alt="YXO YUXINOU Quantum Board">
+                        </div>
+                        <div class="pick-content">
+                            <div>
+                                <div class="pick-title">YXO YUXINOU 480W Board</div>
+                                <div class="pick-bottom-line">"Massive true wattage and genuine Samsung diodes for serious indoor fruiting."</div>
+                            </div>
+                            <a href="#yxo" class="btn-glow" style="margin-bottom: 0.5rem; background: rgba(255,255,255,0.1); color: #fff; box-shadow: none;">Read Review</a>
+                            <a href="#" class="btn-glow">Check on AliExpress</a>
+                        </div>
                     </div>
                 </div>
+            </section>
+
+            <section class="deep-dive-section">
                 
-                <div class="product-card">
-                    <h3>3. YXO YUXINOU Quantum Board (Best for Yield)</h3>
-                    <p>This is where you get domestic name-brand performance for factory-direct prices. The YXO YUXINOU board uses genuine Samsung LM301H diodes (the horticultural standard) and an authentic Meanwell driver. It delivers massive, uniform light output capable of maxing out the DLI (Daily Light Integral) of high-yield crops like tomatoes or peppers.</p>
-                    <div class="pros-cons">
-                        <div class="pros">
-                            <h4>Pros</h4>
-                            <ul>
-                                <li>Genuine Samsung LM301H Diodes</li>
-                                <li>Authentic Meanwell Driver</li>
-                                <li>Massive light output (480W True Draw)</li>
-                            </ul>
-                        </div>
-                        <div class="cons">
-                            <h4>Cons</h4>
-                            <ul>
-                                <li>Runs quite hot at 100% capacity</li>
-                                <li>Shipping can take 2-3 weeks</li>
-                            </ul>
+                <!-- Review 1 -->
+                <div id="mastergrow" class="review-block">
+                    <div class="review-left">
+                        <img src="images/value.png" alt="MasterGrow Full Spectrum" class="review-main-image">
+                        <div class="verdict-box">
+                            <div class="score">9.2</div>
+                            <div class="score-label">PlantProtocol Score</div>
                         </div>
                     </div>
-                    <div style="margin-top: 1.5rem;">
-                        <a href="#" class="btn-glow">Check on AliExpress</a>
+                    <div class="review-right">
+                        <div class="review-title-area">
+                            <h3>MasterGrow Full Spectrum 300W</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Best Overall Value • Est. Price: $75 - $90</p>
+                        </div>
+                        <p>The MasterGrow series steps up the game by offering serious wattage for vegetative growth and moderate fruiting. It includes IR and UV diodes which are essential for resin production and plant immune responses. At under $100 for true 300W draw, it's an absolute steal for anyone building a standard 3x3 footprint tent.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h4>Pros</h4>
+                                <ul>
+                                    <li>Includes UV & IR diodes</li>
+                                    <li>Great spectrum for full lifecycle</li>
+                                    <li>Solid industrial casing</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h4>Cons</h4>
+                                <ul>
+                                    <li>Cooling fans can be slightly noisy</li>
+                                    <li>Heavier than quantum boards</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div id="mingben" class="review-block">
+                    <div class="review-left">
+                        <img src="images/budget.png" alt="Ming&Ben LED Grow Light" class="review-main-image">
+                        <div class="verdict-box">
+                            <div class="score">8.5</div>
+                            <div class="score-label">PlantProtocol Score</div>
+                        </div>
+                    </div>
+                    <div class="review-right">
+                        <div class="review-title-area">
+                            <h3>Ming&Ben Fanless 100W</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Best Budget Pick • Est. Price: $25 - $40</p>
+                        </div>
+                        <p>The Ming&Ben 100W panel is the undisputed champion of budget growing. It utilizes a fanless aluminum heat sink design, meaning it has zero noise output—perfect for apartment homesteaders starting seeds or growing microgreens in living spaces.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h4>Pros</h4>
+                                <ul>
+                                    <li>Incredibly affordable</li>
+                                    <li>Silent, fanless design</li>
+                                    <li>Lightweight and easy to hang</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h4>Cons</h4>
+                                <ul>
+                                    <li>Insufficient for flowering large plants</li>
+                                    <li>Basic unbranded diodes</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div id="yxo" class="review-block">
+                    <div class="review-left">
+                        <img src="images/yield.png" alt="YXO YUXINOU Quantum Board" class="review-main-image">
+                        <div class="verdict-box">
+                            <div class="score">9.5</div>
+                            <div class="score-label">PlantProtocol Score</div>
+                        </div>
+                    </div>
+                    <div class="review-right">
+                        <div class="review-title-area">
+                            <h3>YXO YUXINOU 480W Quantum Board</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Highest Yield Potential • Est. Price: $180 - $220</p>
+                        </div>
+                        <p>This is where you get domestic name-brand performance for factory-direct prices. The YXO YUXINOU board uses genuine Samsung LM301H diodes (the horticultural standard) and an authentic Meanwell driver. It delivers massive, uniform light output capable of maxing out the DLI (Daily Light Integral) of high-yield crops like tomatoes or peppers.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h4>Pros</h4>
+                                <ul>
+                                    <li>Genuine Samsung LM301H Diodes</li>
+                                    <li>Authentic Meanwell Driver</li>
+                                    <li>Massive uniform light output</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h4>Cons</h4>
+                                <ul>
+                                    <li>Runs hot at 100% capacity</li>
+                                    <li>Requires active tent exhaust</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="btn-glow" style="max-width: 300px;">Check on AliExpress</a>
                     </div>
                 </div>
             </section>
