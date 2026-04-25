@@ -50,7 +50,8 @@
         nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 4rem; }
         .logo-container { display: flex; flex-direction: row; align-items: center; gap: 1rem; text-decoration: none;}
         .logo-text-group { display: flex; flex-direction: column; justify-content: center; }
-        .logo-mark { width: 48px; height: 48px; background: var(--bg-dark); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .logo-mark { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
+        .logo-mark img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .logo-plant { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.8rem; letter-spacing: 4px; color: var(--text-light); line-height: 1;}
         .logo-protocol { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 8.5px; color: var(--accent-leaf); line-height: 1; margin-top: 0.3rem;}
         .logo-tagline { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.6rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); line-height: 1; margin-top: 0.6rem;}
@@ -119,10 +120,7 @@
         <nav class="container">
             <a href="index.html" class="logo-container">
                 <div class="logo-mark">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--bg-light)" stroke="var(--bg-light)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
-                        <path d="M2 22 12 12"></path>
-                    </svg>
+                    <img src="logo.png" alt="Plant Protocol Logo">
                 </div>
                 <div class="logo-text-group">
                     <div class="logo-plant">PLANT</div>
