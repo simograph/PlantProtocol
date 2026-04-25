@@ -23,10 +23,14 @@
             --card-bg: #FFFFFF;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             background-color: var(--bg-light); color: var(--text-dark); font-family: 'DM Sans', sans-serif;
             overflow-x: hidden; line-height: 1.6;
         }
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-up.active { opacity: 1; transform: translateY(0); }
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent-leaf); width: 0%; z-index: 10001; transition: width 0.1s linear; pointer-events: none; }
         .header-wrapper {
             background-color: var(--bg-dark);
             color: var(--text-light);
@@ -55,14 +59,18 @@
         .logo-plant { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: 1px; color: var(--text-light); line-height: 1;}
         .logo-protocol { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1.1rem; letter-spacing: 1px; color: var(--accent-leaf); line-height: 1;}
         .logo-tagline { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.6rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); line-height: 1; margin-top: 0.6rem;}
-        .nav-links a { color: var(--text-light); text-decoration: none; margin-left: 2rem; font-weight: 600; transition: color 0.3s ease; font-family: 'Montserrat', sans-serif; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;}
+        .nav-links a { position: relative; color: var(--text-light); text-decoration: none; margin-left: 2rem; font-weight: 600; transition: color 0.3s ease; font-family: 'Montserrat', sans-serif; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;}
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--accent-leaf); transform: scaleX(0); transform-origin: right; transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
+        .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); transform-origin: left; }
         .nav-links a:hover, .nav-links a.active { color: var(--accent-leaf); }
         header.blog-header { text-align: center; margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto; }
         .meta-tags { display: flex; justify-content: center; gap: 1rem; color: var(--text-light); font-size: 0.85rem; font-weight: 700; flex-wrap: wrap; font-family: 'Montserrat', sans-serif; text-transform: uppercase;}
         .meta-tag { background: rgba(255,255,255,0.1); padding: 0.4rem 1.2rem; border-radius: 50px; }
         .intro { max-width: 800px; margin: 0 auto; font-size: 1.1rem; text-align: center; color: var(--text-dark); }
-        .btn-glow { display: block; padding: 0.8rem 1.8rem; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; color: #fff; background: var(--accent-green); text-decoration: none; border-radius: 50px; text-transform: uppercase; letter-spacing: 1.5px; transition: all 0.3s ease; text-align: center; white-space: nowrap; border: none; }
+        .btn-glow { position: relative; overflow: hidden; z-index: 1; display: block; padding: 0.8rem 1.8rem; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; color: #fff; background: var(--accent-green); text-decoration: none; border-radius: 50px; text-transform: uppercase; letter-spacing: 1.5px; transition: all 0.3s ease; text-align: center; white-space: nowrap; border: none; }
+        .btn-glow::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transform: skewX(-20deg); transition: left 0.7s ease; z-index: -1; }
         .btn-glow:hover { transform: translateY(-3px); background: var(--bg-dark); color: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1);}
+        .btn-glow:hover::before { left: 150%; }
         .deep-dive-section { padding-top: 3rem; }
         .review-block { display: flex; gap: 4rem; margin-bottom: 6rem; background: var(--card-bg); border-radius: 24px; padding: 3rem; box-shadow: 0 20px 40px rgba(0,0,0,0.04); align-items: center;}
         .review-left { flex: 0 0 40%; }
@@ -76,8 +84,10 @@
         .ali-original-price { font-size: 1rem; color: #999; text-decoration: line-through; margin-left: 0.5rem; font-weight: 400;}
         .ali-rating { color: var(--accent-leaf); font-size: 1.1rem; margin: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; }
         .ali-rating span { color: #666; font-size: 0.9rem; }
-        .ali-btn { background: var(--accent-green); color: #fff; text-decoration: none; padding: 1rem; border-radius: 50px; font-weight: 700; text-align: center; display: block; margin-top: 1rem; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;}
+        .ali-btn { position: relative; overflow: hidden; z-index: 1; background: var(--accent-green); color: #fff; text-decoration: none; padding: 1rem; border-radius: 50px; font-weight: 700; text-align: center; display: block; margin-top: 1rem; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;}
+        .ali-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transform: skewX(-20deg); transition: left 0.7s ease; z-index: -1; }
         .ali-btn:hover { background: var(--bg-dark); }
+        .ali-btn:hover::before { left: 150%; }
         .verdict-box { background: var(--bg-light); padding: 1.5rem; border-radius: 16px; text-align: center; }
         .score { font-size: 3.5rem; font-weight: 900; color: var(--accent-green); font-family: 'Montserrat', sans-serif; line-height: 1; }
         .score-label { text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: var(--text-muted); font-weight: 700; margin-top: 0.5rem; font-family: 'Montserrat', sans-serif;}
@@ -155,7 +165,7 @@
             <section class="quick-recommendations">
                 <div class="quick-picks" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin-bottom: 5rem;">
 
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.0s;">
                         <div class="pick-badge">Highest Yield Potential</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/S083e2104e1e6450db45714be37df8d9bX.jpg" alt="Mylar Grow Tents" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -171,7 +181,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.1s;">
                         <div class="pick-badge">Best Overall Value</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/S76d0c7094c474b1295f12ba55c39011d1.jpg" alt="Mylar Grow Tents" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -187,7 +197,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.2s;">
                         <div class="pick-badge">Best Budget Pick</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/Sa2c08543a9754bb3a5613ec96828c086E.jpg" alt="Mylar Grow Tents" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -203,7 +213,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.30000000000000004s;">
                         <div class="pick-badge">Top Pick For Microgreens</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/S25efa38cbc3149bbbd22d0e5bdda5769c.jpg" alt="Mylar Grow Tents" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -219,7 +229,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.4s;">
                         <div class="pick-badge">Most Energy Efficient</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/Sf128daf9e9644509a6acee76127dbc8bF.jpg" alt="Mylar Grow Tents" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -235,7 +245,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.5s;">
                         <div class="pick-badge">Best Compact Setup</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/Sb5a43c6485d34490943ac20b969a1feeq.jpg" alt="Mylar Grow Tents" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -256,7 +266,7 @@
 
             <section class="deep-dive-section">
 
-                <div id="item-1" class="review-block">
+                <div id="item-1" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -294,7 +304,7 @@
                         <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4k6IEjkwGhzu4eMAyaAhSH5pSVWUF4K1V1wRL7TrJqnhHeyA2FdGjBAxsgxONziRePNH3QpgdXTD2CsxJ7J86a2Ypypg5Bw7g2yxzrU9dyMz4zejahFP7ZckExMJjETWs5tg7NqFKy6w2BkArYkoeY3ifKjELQtS6ZayUuGoNdEI0lrKMZ9HipwX4rSZuoebpoUwC0LsdVUNEQ0JVMht4uwteZtoYtdLR4HCZWkVxQPyeP1dEIXY8pWrNPkvvBbodTSu2uvblsliaVWIIc8GXe4Bj2bBzi1cbysLouFWFBFOl6eNEjZDZnzCyoT4ilYMgFJeSB7VufM3VE6M3wLDhEFyctQnrIQkbQuD80RkQIQQC7MbAROA1ar8pvy9YVmq3hhLSZJcrwDxQRU5L5qgDFrfSSXOdzsv7ozISTG3fcWFk5jwjKEJbsQl49r0R6phJzJ9B5jo1QHwFz5G1ueX5D2pADvXu1zMYIHwqhVX90luYHpW2Y0aEiDcOAB8ycWmqGTCWHhAV47VgMU87ekBAJoF6djK4JDjI4AfXPBllZyR1pf9A83fe2wYcXvU9foLO6Kt5g3gZ9zfOpeWUf8cZKEYrYABHPBzfRmrJuXBOobw39ScJppU6Owl2pMVtYeEJaJ74pStLUgC5sSfpofnOBve5YYrfroxgh9YkjEp57sfSQUnDkBth7qXMf02AwgKP98zVRcQkjNK69" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px; padding: 1rem;">INTERESTED</a>
                     </div>
                 </div>
-                <div id="item-2" class="review-block">
+                <div id="item-2" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -332,7 +342,7 @@
                         <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4o3ZxgYK9ZPYNLEb3Ssih8g0OYa6AfwpUrV1lnSsibROgFqLpuJXztgEJEFO0B87XvXSxBFzUSSBb8m8tXWGscFGbng1F1Wt6pzPH2MIhsYQqRD8DeMZwLNErTDc1Op9ODsU45WZa2aCZD48XxepssGiZmAaFl98c9v9AP9TUxkKinwjDqXaXliuBl1Sv1Aiz6eW5VUTOpJaauPDi8rs2u3JUQL7ResoMcWKHB0ydCOpmFuy4w5iPdJ9k3FDnbM5sabEP90XGalocclIyQKxPFIJJOZXeAUE12VTmDtMJIRSxoSdLXNijc2lR9lODFFPVCmDhx1DCB2IY2EM8pIXnWTUTE4fEorEpm4rtT0VlxGRrqNxS2Cn79kTL9T6pIGbl5BfYdcWrw9R4tJyuPVWAX9yQ2FxnZgqNZXorPwmgl3vxCuahZlFVbqHLNMDpclfaEV4rM04IlQosjrVp8ZKVB53wLDw5Zccb8Ddy40GoIFfFihUeBIaFV2LceMKIyMQyJmLG5RtCT3vleoOcLakaqQ59m3gfjuk8LJTtKje9XprvydL6g4EtASAKQhpYgJgvh7xwdH2W0A6V9K9S4XZbjukwMKrtKFU4y6aoOGarVDe5u5vvv9CAHT5oIHkMJWbzmZZUgrIBItv5he63UFumkFrT3uFpJsQdZFhBCm7VqBGmTiLHsPcMT155kEpLJwG6NsnpUuyfVxV8H" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px; padding: 1rem;">INTERESTED</a>
                     </div>
                 </div>
-                <div id="item-3" class="review-block">
+                <div id="item-3" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -370,7 +380,7 @@
                         <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4kOTqTFjW3kjuO6E1obFRvypjpC2qwwudyTNBe4hJrWUFppQyZVyug3NSxxEYwyhNQPsep19lRsAgOhBMFgIw9LRrMtyLWOXUpB6b15EGmBSpEERIlNZue7zmwdkizcRYZUTfPDAqs0t5fNACf7u9DG8SAyjGoZaJRddbKubbXJwW6qHNE8a85C38zRaPy1IB1EPt0zAsnYr37khoDiDft1omqLeoamVlYAz2pa4Hv4dvuKZ2OknFZMJfXPpzsTmL2DeW23GaU5B19SplW9xVNq2D5X5gbjI1xld9wHO3GCNnFCm1q1oFGAiBGB7054bWjmKbQ221VfErBoUFlChIhkytZhs8zgatKBHGNWt8BxnYpC2CSYINNIdm7d0CiRu1ZpPm9PN7AN81Oc2T9Uh0QUp3URY9sb6mLfSwWIBSOqReHXBGWexrdyzIAmC2diCJZpOj621hcN9tFrZ4bspTh4OyTIkaaQEtaXQWbdFg8mJKKxgAm1LmAgm15YST7ePbZlaCbLiQzEt28IjiWg7pAqQPAYWtj7hoScGymZ510ZB1DbHtOPyJ4I3zutJQXYsK3cx7tGpsHtVRvAkZo7cg24QDyDbCCIJa8XZgWa5axK8ac9J0P80IIMWBAd0bxBNEiB3BBvsXs4hMnZVlwr5O3VpjZUZi3SDgjkONFCh4Ag6iJP9dMZxrjtRenrAGbdYb5xKW2oWoOlBcM" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px; padding: 1rem;">INTERESTED</a>
                     </div>
                 </div>
-                <div id="item-4" class="review-block">
+                <div id="item-4" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -408,7 +418,7 @@
                         <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4Fc86CIhmmZeJbiCKj3Fk8b1rZpyKhjT7skHsTrJQ6uY7pvQq1QHPn2pV4PtzkfIi6A8NklmGULSXskbZHiZhEjgpXLEADM2yAqomDudZWpd0Tnsewe3X9np6YmcQaN7dnqVsHfz5bkZYz6ndI1d2A4ikjZMb4LOwARn0B1iUD1FPIdPzZagocIhmNYZb1Ykh53fLqBL9xIGHR2lH03NVRgeFOXiFgwEkOEA3CoN3CBcgGNjgVFSU4f6SxwgBy9mmbyfQbk9O7pRRMsWOnKSSrdrSCLjiMIHC62fOA82uMqB5xSerywDyXR0EQCszBYYnr9RDkK5shrae7WGLln3QhM5CZ98kUmi5mbKQpcqhZYfzBHpaRKSABYFjVHdHJEmZykL5r2kz1EycWf08odZ2cy3MNvkJRbeGxJ4DK8gkzBHWkOX9TsbvYUbntVUtNUteYJVNsDoa540evbJClD6AiiNMqVEMos5p46GJ44QBFgtYF7GQzSptEKYevRG2LuFc0Bxos66aQvWOitlvL0GIb9bw8jaZEBb0Sh2ULwWlxONQWpG2a0ww1cHa0i3cHjAqSwmWH5be494XIPuV7U4ch7BrIjgRvOIrQwCXjCd7k9r3dEfcBEK5ebekgqNqH2NadZZrZUBwYzOLr1ZyJpT9ZiV4Smr36dZ4wHSDIi7FIoJW5ZCdiG0c0AHGLK37uRJ4p4bYZVhHbadMT" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px; padding: 1rem;">INTERESTED</a>
                     </div>
                 </div>
-                <div id="item-5" class="review-block">
+                <div id="item-5" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -446,7 +456,7 @@
                         <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4mrMXteOsmXfOO9VmPtlLsU5Gd0q63lAoWbG0fHlEeBVphfCpsrmvmWkK11oa3HqudW409FFhEBwL1yezJmlHC8QVnv1n7CYom0xnG9H9HFPjvbMbAJkxkJfim69mZpqn7RCyxs7euGRLeweJPp3JhRYcgsaiA5f8LVi3ubgFPBHcBQKEt1Il0gGjHxJg96vJahgrD3IOCG6cS2pZluSt2yEoMriOGspSClW9ye3FBfqa1WhkxLWgh0ELwod44bvtpG7Oye0QTn0X6ewsFIVThbN2u254QlGB5w6k3RbCILtuZ7jYplgQbsUvkTHoF1hqIfQuy0lKpFNW1uejTkZ71X7N886HBTEM4aoZjEjZpfDA3BYhyTAR6Al1mjrSa8I7Biq08YraQa5axUpu1H59piLNRR2fIE8ELKDKJzp5WcZJzTMFSBkxfqRIYBDS8xuAB6IMJraRRRICi4rt2PiYUlKj1MmgMxPavSLZQjAUShF1vZuFgqL3jf6kKoyvVxuzYkx49BSXpqU1hJdIFRfF2tNE4r4cSlog6PJeZ1hzsHWtaAxUD25q5dpaJD7cg2DczU5BjTHmn8UyyPXM3SnXlfe85GiaacaSfR3HGDHr2Z2F42xpnajZfZTacWi6yp3W6ITlaCnTh88o2GDWYJeETbxJQFGp4TXulPRCTsAPNH4XC5Tw8XUBSVmde4bHmzwkm9onli0ekZdOZ" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px; padding: 1rem;">INTERESTED</a>
                     </div>
                 </div>
-                <div id="item-6" class="review-block">
+                <div id="item-6" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -502,6 +512,30 @@
                 </footer>
             </div>
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const progressBar = document.createElement('div');
+                progressBar.classList.add('scroll-progress');
+                document.body.appendChild(progressBar);
+                window.addEventListener('scroll', () => {
+                    const scrollTop = window.scrollY;
+                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const scrollPercent = (scrollTop / docHeight) * 100;
+                    progressBar.style.width = scrollPercent + '%';
+                });
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+                document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+            });
+        </script>
 
 </body>
 </html>

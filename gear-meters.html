@@ -23,10 +23,14 @@
             --card-bg: #FFFFFF;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             background-color: var(--bg-light); color: var(--text-dark); font-family: 'DM Sans', sans-serif;
             overflow-x: hidden; line-height: 1.6;
         }
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-up.active { opacity: 1; transform: translateY(0); }
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent-leaf); width: 0%; z-index: 10001; transition: width 0.1s linear; pointer-events: none; }
         .header-wrapper {
             background-color: var(--bg-dark);
             color: var(--text-light);
@@ -55,14 +59,18 @@
         .logo-plant { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: 1px; color: var(--text-light); line-height: 1;}
         .logo-protocol { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1.1rem; letter-spacing: 1px; color: var(--accent-leaf); line-height: 1;}
         .logo-tagline { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.6rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); line-height: 1; margin-top: 0.6rem;}
-        .nav-links a { color: var(--text-light); text-decoration: none; margin-left: 2rem; font-weight: 600; transition: color 0.3s ease; font-family: 'Montserrat', sans-serif; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;}
+        .nav-links a { position: relative; color: var(--text-light); text-decoration: none; margin-left: 2rem; font-weight: 600; transition: color 0.3s ease; font-family: 'Montserrat', sans-serif; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;}
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--accent-leaf); transform: scaleX(0); transform-origin: right; transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
+        .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); transform-origin: left; }
         .nav-links a:hover, .nav-links a.active { color: var(--accent-leaf); }
         header.blog-header { text-align: center; margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto; }
         .meta-tags { display: flex; justify-content: center; gap: 1rem; color: var(--text-light); font-size: 0.85rem; font-weight: 700; flex-wrap: wrap; font-family: 'Montserrat', sans-serif; text-transform: uppercase;}
         .meta-tag { background: rgba(255,255,255,0.1); padding: 0.4rem 1.2rem; border-radius: 50px; }
         .intro { max-width: 800px; margin: 0 auto; font-size: 1.1rem; text-align: center; color: var(--text-dark); }
-        .btn-glow { display: block; padding: 0.8rem 1.8rem; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; color: #fff; background: var(--accent-green); text-decoration: none; border-radius: 50px; text-transform: uppercase; letter-spacing: 1.5px; transition: all 0.3s ease; text-align: center; white-space: nowrap; border: none; }
+        .btn-glow { position: relative; overflow: hidden; z-index: 1; display: block; padding: 0.8rem 1.8rem; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; color: #fff; background: var(--accent-green); text-decoration: none; border-radius: 50px; text-transform: uppercase; letter-spacing: 1.5px; transition: all 0.3s ease; text-align: center; white-space: nowrap; border: none; }
+        .btn-glow::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transform: skewX(-20deg); transition: left 0.7s ease; z-index: -1; }
         .btn-glow:hover { transform: translateY(-3px); background: var(--bg-dark); color: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1);}
+        .btn-glow:hover::before { left: 150%; }
         .deep-dive-section { padding-top: 3rem; }
         .review-block { display: flex; gap: 4rem; margin-bottom: 6rem; background: var(--card-bg); border-radius: 24px; padding: 3rem; box-shadow: 0 20px 40px rgba(0,0,0,0.04); align-items: center;}
         .review-left { flex: 0 0 40%; }
@@ -76,8 +84,10 @@
         .ali-original-price { font-size: 1rem; color: #999; text-decoration: line-through; margin-left: 0.5rem; font-weight: 400;}
         .ali-rating { color: var(--accent-leaf); font-size: 1.1rem; margin: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; }
         .ali-rating span { color: #666; font-size: 0.9rem; }
-        .ali-btn { background: var(--accent-green); color: #fff; text-decoration: none; padding: 1rem; border-radius: 50px; font-weight: 700; text-align: center; display: block; margin-top: 1rem; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;}
+        .ali-btn { position: relative; overflow: hidden; z-index: 1; background: var(--accent-green); color: #fff; text-decoration: none; padding: 1rem; border-radius: 50px; font-weight: 700; text-align: center; display: block; margin-top: 1rem; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;}
+        .ali-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transform: skewX(-20deg); transition: left 0.7s ease; z-index: -1; }
         .ali-btn:hover { background: var(--bg-dark); }
+        .ali-btn:hover::before { left: 150%; }
         .verdict-box { background: var(--bg-light); padding: 1.5rem; border-radius: 16px; text-align: center; }
         .score { font-size: 3.5rem; font-weight: 900; color: var(--accent-green); font-family: 'Montserrat', sans-serif; line-height: 1; }
         .score-label { text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: var(--text-muted); font-weight: 700; margin-top: 0.5rem; font-family: 'Montserrat', sans-serif;}
@@ -155,7 +165,7 @@
             <section class="quick-recommendations">
                 <div class="quick-picks" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin-bottom: 5rem;">
 
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.0s;">
                         <div class="pick-badge">Highest Yield Potential</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/S33710f2f5d60422cb296540c0b1a26d7V.jpg" alt="pH & EC Meters" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -171,7 +181,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.1s;">
                         <div class="pick-badge">Best Overall Value</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/S7f575eb246744780a4c4510af444b0f53.jpg" alt="pH & EC Meters" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -187,7 +197,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.2s;">
                         <div class="pick-badge">Best Budget Pick</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/Sae8eca09bc7a4c728a27159ab296a2fbq.jpg" alt="pH & EC Meters" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -203,7 +213,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.30000000000000004s;">
                         <div class="pick-badge">Top Pick For Microgreens</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/S7d5b62dcc63f41f38ab5ad54bfcab698z.jpg" alt="pH & EC Meters" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -219,7 +229,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.4s;">
                         <div class="pick-badge">Most Energy Efficient</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/Sbd5ef940affb4b2fb01f6175635e270aM.jpg" alt="pH & EC Meters" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -235,7 +245,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.5s;">
                         <div class="pick-badge">Best Compact Setup</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/S6127066ca4674147beae923cd1faf227z.jpg" alt="pH & EC Meters" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -256,7 +266,7 @@
 
             <section class="deep-dive-section">
 
-                <div id="item-1" class="review-block">
+                <div id="item-1" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -294,7 +304,7 @@
                         <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4EATgSRS6RjOV6Vc7dgLVC9ec08NmKSGK73dmEHUJf4Zq93gQlxH1lki1ds44VRnahGPSsqnidRwtAaNDnsBvW4m3KM5NWPJKLIuO52SBKWXGmBKzss4xbNdPyfMXBto4W0vZIj5I1V9Xn27KkJ757cixGAI33FtxXLvbhPLPTaIkXniK6jwRXvcXsscnOVYqnSe3Jm6HQOGPih3S97iymDodeusnlPBepDAJ31mjii8OMXehcMHANYr6b0CBi3DSsQzl7T78PhVpuIG1mTRVM8697JI6PHW1GwbQqX16dL9OUGdpf36XN4GoMwJiq7z7Li8Djr6zs6ASy4UZ2i04VLDDbhDXVTE99OGQyPzFlTDpoCxNP6VLkJv0FVSCYW5CuwL7jse45giBfxrxOMJejSmIRz28JGrO3al428Q7ZeEkqweq42miY9Ehcpvv4842WaM0taQ6YqgZYrqjc5g5nVgqFVN4eR5C62Okq6bMgp5CJ4qPGAYNDrBdcveQGeOMQcuFQKfmLxs1sEteIFWqO1kTkYkGmrPbInP4jxFyFQrfbOjjKiQ7NCNYppQ2HCtIsQc7u6pjAvYwGtZvIXGdZmprtjrllTLPqAKcRKKNUj0NUIXHamqN24J7f22XEWi1UjYFTZFyXGDniicleu0bwQRb4hXqC16oV6V6s9FzBHN63tUCQDSCSdKhXrKBPSstYccb9dKqbr1k1" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px; padding: 1rem;">INTERESTED</a>
                     </div>
                 </div>
-                <div id="item-2" class="review-block">
+                <div id="item-2" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -332,7 +342,7 @@
                         <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4nxiLJGkYCJIT2alXzs5uosRk5jyfxYNapbT2BSlx9uygHNsFjgv0D0fr2AF19lGgnvIE46ueAI0n8qx7WIiMVE7kELHPDFXCdALmCLtZKnB9HqVoDwzDgXJlIESt9BhEfSGgaK4ubYS6Mx17IkgpXn78HkhjdMdSixYPFLacKWm22q61CZ0SW4LZtRyRP13bRsqVGL3txf5r4zOo5BlHp0F2qoetC6GXBWUW72W5uItRWTZBPlRjOtGFSgkBFyCYElCPxMw6RH05pN0nKD7ju0XUE1OdjFuJbcwmuhgwdYKVrBgDSqNHlYeE6nO56wU1hkZHwMKvdO3DZSBRjFWglMMHBeRFYpgM63X4H1YQqluSAQK4jYRklrIVmLs1gHK2NFBbn9cqa8g06VzcxyGVwBt2pasjwhSnR9DnPZZhNyeWMqZ9pHN1mwAlYJIwYvTqyjDtJeRQXamAkoHjEvV0HdvtCmfmufxmV7HD9FIu6E7o6uJQ2S4CobFCWeTSTxXV7upwXKF8DZL3LjMY6oqWIhbIFBbUtyxJZiilZqQSTKV0nLdaFOSTH7KMbZsfEl5yXtddd1CgUpdi8i4wwzZ5JSMWPWeKiWcWY684KPEry0yQv9L2Phy6psaard86PsuW6HXwlKRTUQ8ZnwXlBZjk7obOYhzDP5Tc18Blp5n2Hf0fFL6deUZ5i8b9IAlmJTjCCiiN24Mfi9olB" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px; padding: 1rem;">INTERESTED</a>
                     </div>
                 </div>
-                <div id="item-3" class="review-block">
+                <div id="item-3" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -370,7 +380,7 @@
                         <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4nuKSjnHYBiC5wj4c3SaxbysWel9Xluk5dvmC3krXG5CRUJZR1OGvOW65XFIsRFSQieSuQqECrmNnKCAGy9wQpe1uQkl3wonBHCKE8b8azqWx8LdpdYEJiwpuUMY1Bg14ldg0txQ0lveeSnMX26sou6MokoVB0eC5pUzvikgnMRTEbgdTCVHR8D7TSl6zdgafjBlvhnyU6Z41twbF9pwzow70AvVAJHYrRM1Lzep3xkgyWeGi6b7LTLi6OFuhXIzAiZsymKZ6ZVZRrrnOicsfInDHiGNWyyIT99mArNzC3hsjPw5HpvTqqckK4SZyyR5MEYkE13NmoMIAD1wn9vBiOilzO1YAa9EZvqZyu49TCBEicGFa03N6ZfKNPyTy1o88OeywQP9ESt4jVJ96yNWaM7641GyF1XSLpinTjuWryvmAwe4t7FhtZiRHNy8qwCtZKyPhej9BrNDxni26DEXuFKxWAmUww9xFwOZmTSIqpr1aahbgCfrQeNUGjraqAAdkFq5cjGfXxUI68PBA1l8LXEVklx7uTVJNUrKSWwGoufDvismeRawd999JpHO1jw0wO7lgbO0k4VwYjTAVsDnZt4b4Wi0NEO2QHEtnH2uMzHnjNpCtP4gW45ZG0KDP5LM0RIPGXZZ0UFmzq5MaqEuvqniPDHCKvwD0BkzPCgc2NyqI2xjSWRRGV0i2Wf9eD3RDR2pa8tdjPmtrj" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px; padding: 1rem;">INTERESTED</a>
                     </div>
                 </div>
-                <div id="item-4" class="review-block">
+                <div id="item-4" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -408,7 +418,7 @@
                         <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4kNshYTla4i6PWSGyx7IsakplKctoJw8tjGjNsgRInNRQr6yyyGl9TwlQ1n2foRoCgQ0lqSEpMo2vmt05w2swbdCqAbLNcFlxxg0Ir9kEEEELrIzsxzrVRgsJb0zZtun5rhrg7rtt8X2ulQABem08QFEjH7mqLhzqPM7eT1vvZHJ5KNmrlptBAlxsT3GT9YLg3J38IEVoJ3rvgC0KYr7Wh032SjLjmlqItPRJH48B5OOgLOOyfEwr1bUTQPc4f1GFVEBXDSUxDophxps6OoMWiICvF8ICs67rEM4fiHSvQF93V5TJikucEuHnUzVJmX79nFZefK0ZdM0lD3Jxz5O9FY2pn99iolHoKm2wz8yK7RhAFANJids1DCSypL9j8WgWvSpnEtNLehOfJkQDVoJx1sOvWncUXPmcdRIFOlVgVT73F1bpJ4aRzB3wAVKFSOsyA2DpiD5vfvvLl37FNK9XLJy93wMgYNUAEeU00mi9RawUYILLD1qoRZYsycVRLwC1ta4QWTOQYZ6sdqGloncFr5hvU1R3B8lNazGholEc6335QpE2gOeI8NMAxhLTL801yVXjfLX5fm8d5R3AZ9R6edv4JNspOYU1qmP3ezcK6ntbKIsCijcw5he2R4ovyRHPpZBSexSjDv6x41ohyyUaQG5HIMN2kUmhGABteTPYhQGvwuSfgg5dbdchZVdInjZRwUd3D3cKIixsz" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px; padding: 1rem;">INTERESTED</a>
                     </div>
                 </div>
-                <div id="item-5" class="review-block">
+                <div id="item-5" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -446,7 +456,7 @@
                         <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4mnbiObp9mhgjgUdGGmHbkQobHGD7pYajqZIxM0e8fYpeyPqeILRgQu5UpM209xz7Utph1ly3UIwvow4HGDM3Z00pjPDm2GgLSrmOX8fnooMUOyHtPh12KR2T3oqG5tv288hIfqa5hNhKcYT5kVISsFKanTsDG2RzKcCgCqIDj76yDbcMJfE1bR3quYyqEm9q6qPECpWaOQ4ioSYADBHyABCj7pf06OI825j9kHEH1PhzwO2vlLXQ3w0b29vR69aKmRxWWbPRJl5LsuQtjbRlK26QUyrZLX3FOeMm3NS6ziDgkSacoktvEqYEo4p17IYkRlbFMTDiOMmfOG3a3GU4cdEeNKpHVBJ0gcq8IK85MVFldawbyaMFaxuVqf1GcHUK5YRKmTJewtHFka49O6S8sDNh3TJbg4f87nkVLLYILAxmgctfaaxTngPG09EdcIWil6NzB4PKlhfm232hSqa66N5v4U6qAo1klAYzxvv0x7hPu87a8Qj0AgXffEU0dJDMziEeM4k6mbhK5T3nnv4efvwsr2jiMwKv9iHELFeOHLU45UqaK8IlJ5ggu52bqrS3dsh2AoSanTtkXjFtrOi4kCAsEFZN1ok4czlaJcIR14Xsryqx8zCxXhdrgIIKhrUBgyNemTXfN1Aaawa44ka0gHIe8JJelnwXMfasXnVVxrSbtTb7ufJEobVWGpRvsgzkjrWljKyVyY6nL" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px; padding: 1rem;">INTERESTED</a>
                     </div>
                 </div>
-                <div id="item-6" class="review-block">
+                <div id="item-6" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -502,6 +512,30 @@
                 </footer>
             </div>
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const progressBar = document.createElement('div');
+                progressBar.classList.add('scroll-progress');
+                document.body.appendChild(progressBar);
+                window.addEventListener('scroll', () => {
+                    const scrollTop = window.scrollY;
+                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const scrollPercent = (scrollTop / docHeight) * 100;
+                    progressBar.style.width = scrollPercent + '%';
+                });
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+                document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+            });
+        </script>
 
 </body>
 </html>

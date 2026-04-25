@@ -23,10 +23,14 @@
             --card-bg: #FFFFFF;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             background-color: var(--bg-light); color: var(--text-dark); font-family: 'DM Sans', sans-serif;
             overflow-x: hidden; line-height: 1.6;
         }
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-up.active { opacity: 1; transform: translateY(0); }
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent-leaf); width: 0%; z-index: 10001; transition: width 0.1s linear; pointer-events: none; }
         .header-wrapper {
             background-color: var(--bg-dark);
             color: var(--text-light);
@@ -55,14 +59,18 @@
         .logo-plant { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: 1px; color: var(--text-light); line-height: 1;}
         .logo-protocol { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1.1rem; letter-spacing: 1px; color: var(--accent-leaf); line-height: 1;}
         .logo-tagline { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.6rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); line-height: 1; margin-top: 0.6rem;}
-        .nav-links a { color: var(--text-light); text-decoration: none; margin-left: 2rem; font-weight: 600; transition: color 0.3s ease; font-family: 'Montserrat', sans-serif; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;}
+        .nav-links a { position: relative; color: var(--text-light); text-decoration: none; margin-left: 2rem; font-weight: 600; transition: color 0.3s ease; font-family: 'Montserrat', sans-serif; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;}
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--accent-leaf); transform: scaleX(0); transform-origin: right; transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
+        .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); transform-origin: left; }
         .nav-links a:hover, .nav-links a.active { color: var(--accent-leaf); }
         header.blog-header { text-align: center; margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto; }
         .meta-tags { display: flex; justify-content: center; gap: 1rem; color: var(--text-light); font-size: 0.85rem; font-weight: 700; flex-wrap: wrap; font-family: 'Montserrat', sans-serif; text-transform: uppercase;}
         .meta-tag { background: rgba(255,255,255,0.1); padding: 0.4rem 1.2rem; border-radius: 50px; }
         .intro { max-width: 800px; margin: 0 auto; font-size: 1.1rem; text-align: center; color: var(--text-dark); }
-        .btn-glow { display: block; padding: 0.8rem 1.8rem; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; color: #fff; background: var(--accent-green); text-decoration: none; border-radius: 50px; text-transform: uppercase; letter-spacing: 1.5px; transition: all 0.3s ease; text-align: center; white-space: nowrap; border: none; }
+        .btn-glow { position: relative; overflow: hidden; z-index: 1; display: block; padding: 0.8rem 1.8rem; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; color: #fff; background: var(--accent-green); text-decoration: none; border-radius: 50px; text-transform: uppercase; letter-spacing: 1.5px; transition: all 0.3s ease; text-align: center; white-space: nowrap; border: none; }
+        .btn-glow::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transform: skewX(-20deg); transition: left 0.7s ease; z-index: -1; }
         .btn-glow:hover { transform: translateY(-3px); background: var(--bg-dark); color: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1);}
+        .btn-glow:hover::before { left: 150%; }
         .deep-dive-section { padding-top: 3rem; }
         .review-block { display: flex; gap: 4rem; margin-bottom: 6rem; background: var(--card-bg); border-radius: 24px; padding: 3rem; box-shadow: 0 20px 40px rgba(0,0,0,0.04); align-items: center;}
         .review-left { flex: 0 0 40%; }
@@ -76,8 +84,10 @@
         .ali-original-price { font-size: 1rem; color: #999; text-decoration: line-through; margin-left: 0.5rem; font-weight: 400;}
         .ali-rating { color: var(--accent-leaf); font-size: 1.1rem; margin: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; }
         .ali-rating span { color: #666; font-size: 0.9rem; }
-        .ali-btn { background: var(--accent-green); color: #fff; text-decoration: none; padding: 1rem; border-radius: 50px; font-weight: 700; text-align: center; display: block; margin-top: 1rem; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;}
+        .ali-btn { position: relative; overflow: hidden; z-index: 1; background: var(--accent-green); color: #fff; text-decoration: none; padding: 1rem; border-radius: 50px; font-weight: 700; text-align: center; display: block; margin-top: 1rem; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;}
+        .ali-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transform: skewX(-20deg); transition: left 0.7s ease; z-index: -1; }
         .ali-btn:hover { background: var(--bg-dark); }
+        .ali-btn:hover::before { left: 150%; }
         .verdict-box { background: var(--bg-light); padding: 1.5rem; border-radius: 16px; text-align: center; }
         .score { font-size: 3.5rem; font-weight: 900; color: var(--accent-green); font-family: 'Montserrat', sans-serif; line-height: 1; }
         .score-label { text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: var(--text-muted); font-weight: 700; margin-top: 0.5rem; font-family: 'Montserrat', sans-serif;}
@@ -155,7 +165,7 @@
             <section class="quick-recommendations">
                 <div class="quick-picks" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin-bottom: 5rem;">
 
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.0s;">
                         <div class="pick-badge">Highest Yield Potential</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/Se483c12b237a49d190e0c4d92cd5c6a8J.jpg" alt="Seed Starting" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -171,7 +181,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.1s;">
                         <div class="pick-badge">Best Overall Value</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/S5b508db6227b435184db39b58ed24d470.jpg" alt="Seed Starting" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -187,7 +197,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pick-card">
+                    <div class="pick-card fade-up" style="transition-delay: 0.2s;">
                         <div class="pick-badge">Best Budget Pick</div>
                         <div class="pick-image-container">
                             <img src="https://ae-pic-a1.aliexpress-media.com/kf/S1ef2d068a24742eda610c53facc25aabI.jpg" alt="Seed Starting" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" referrerpolicy="no-referrer">
@@ -208,7 +218,7 @@
 
             <section class="deep-dive-section">
 
-                <div id="item-1" class="review-block">
+                <div id="item-1" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -246,7 +256,7 @@
                         <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4FFJapOnlkBCxPcu45D3TpPOqQMDmnk0XKDbL92frwRYQr7m4uJRqUHyBpHQLyEZ1QvBLddoxWuC6pi2ctQjDBaKKd7Svg2ayvQGaOntdkjV0bjDN8EuAUJK9WJMhqOxlgsj03qFi486eIkcE0MlyKBvv0eE4v1GhKrhG2jmFhEupRRRpgnBUl7qRhtqrprUYoggqUG5MlnJZdIOwUOpmcT2g5GqKlHscfiHIz9LQT8hhSCGucHNy1BFDyo0JAWMoBlCqYHviG1hilzLaCshKOYifNpzPQyq2kp11dDyMNrrKvKX2RDowHRNIBpSnmvzSeY0DScbgDIDhhO1WqeRiaXmDK0XeNxu94mewKQu88GBDRSJcJfuQA4JZ2gg8eYP41moYVYB0it4yq7mO3aAKJe2qeEvrKcfqrQYNj1uqI0VQq7hu8JW9zdvsTDfdUJF7PuhIFyDqCESrxZ4D8Y8Vdcbxry3cnVGf9Pmsam1YDD66ghMNPbSC6JVmdtiwaU1tnWEnj9wd8cHpTFAkKl7JxXRBGf3Ax3SVQkgI1i01s4jk3GDGOBV1ZV4f4TYDPVnHioRZBYQWALahAZgRZt3JIKLz3bZku3HDB546Od62EtExO2oEYc6ctHyAuAZE9wxixJHXnGhmxy9MkLL1r5bsUShiqtSXnOzV2PEfityxyA2SAfFLnecXWdm8oEYsw5sO9iAiGAYG1k6d7" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px; padding: 1rem;">INTERESTED</a>
                     </div>
                 </div>
-                <div id="item-2" class="review-block">
+                <div id="item-2" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -284,7 +294,7 @@
                         <a href="https://s.click.aliexpress.com/s/pyFri10M6ltAv61YZY9TfrxiDaaFXRreuZWJMeLtD8jig1wPxn51K2eq59ds8iT5Wl5L3w5KJyrl7SjOO3B0oJ0Xjwnc7n8AQA7gf5qnT4sCyU05LNms9JvyWQNFHNKtzBcoBpSguMg3UBR1FOODkmGTloXosMhqhnKgzzuJPYPxewVvzupiAiKSJA5SK0iQRxmaQ7UPG0AP2HC7uLitVpvXIfjMl7RnsnN7B8FrGfP9TWP7emQeaXV90Bp9fLEiLeKHsRf9R2jgKD32Axm5na4bRJdkhGVyv3GcDgMjmYrrZWinWctR9gnPwA4m4EPJbYCp0RTlu8Ddt2aWfRHqfRO2PCsINdA8c5yflBb2vOCgaqQOI11UgcXVm8qJLYIxRkLLp1BxspJ7OneoshCi34T558qVpJp3Ac24CF9ElNHw5b6IsuM0Jnx4ouyAMAZUMq43dQer2f3La8HSYEKDuQ5wq7zYTOxWn7C8NCMK3kLPryO728dlTy8YtXPep3wfRyu7p7RQwclbJ5JMXlOiLx5XF9hSVEu0VPIrnHafH2ym9GktAJC8DA8J5lwsPjg4xyilLT2bR1nJBqZjoLdHLsJ7cqr1dALWr9liDAsiRvac6k1nh2wT6l6Hr9fDigsNDwA2wKNyiwSKYntoL3L502K8ZXfMtkwTBQQAFKLca3AmMkU8RNvCwviB8rxAyqAIih7vFKmMYD2i0pZiKtcmT0L0TjNlufCUeCjHSKYx9JsttWAiPF7xjyeWvwgX5yLeSbYzN962yihuNx6DiCNWFbcyBZRCW1V0Oz4e7bdCqmYdVh3z7nGktnRsbF3qTXuKsKCPUrCBhwejmdjJ7yC3W3RHbn3WYVdSuxm162Kd3e2Eys0l77b8H5GrUoDkJ5wm3xxzmeJUExr15VMLXK1twCcvF3GSWtzvK2L4WiTlJGCOVsjapfJft1T9bANJJwb5Whg1Vz4p4Kx0Rb8OkXrhiTgZ1jvET0Jg0EfP5m51seKNOi6CKIbnQMQSGqQWTa4pIfMMOHZJ" target="_blank" rel="nofollow" class="btn-glow" style="max-width: 300px; padding: 1rem;">INTERESTED</a>
                     </div>
                 </div>
-                <div id="item-3" class="review-block">
+                <div id="item-3" class="review-block fade-up">
                     <div class="review-left">
                         <div class="ali-embed-widget">
                             <div class="ali-embed-img">
@@ -340,6 +350,30 @@
                 </footer>
             </div>
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const progressBar = document.createElement('div');
+                progressBar.classList.add('scroll-progress');
+                document.body.appendChild(progressBar);
+                window.addEventListener('scroll', () => {
+                    const scrollTop = window.scrollY;
+                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const scrollPercent = (scrollTop / docHeight) * 100;
+                    progressBar.style.width = scrollPercent + '%';
+                });
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+                document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+            });
+        </script>
 
 </body>
 </html>
