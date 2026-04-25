@@ -9,17 +9,17 @@
     <meta name="referrer" content="no-referrer">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-dark: #092615;
-            --bg-light: #F7F6F2;
-            --accent-orange: #EA6328;
-            --accent-yellow: #E5C558;
-            --text-dark: #222222;
-            --text-light: #F7F6F2;
-            --text-muted: #555555;
+            --bg-dark: #103C27;
+            --bg-light: #F3EFE6;
+            --accent-green: #3A7D44;
+            --accent-leaf: #6DA951;
+            --text-dark: #3B4247;
+            --text-light: #F3EFE6;
+            --text-muted: #666666;
             --card-bg: #FFFFFF;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,23 +41,25 @@
             position: relative;
             overflow: hidden;
         }
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
-        h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; color: var(--accent-yellow); margin-bottom: 1.5rem; text-align: center;}
-        h2 { font-size: clamp(2rem, 4vw, 3rem); margin-top: 3rem; margin-bottom: 1.5rem; color: var(--text-dark); padding-bottom: 0.5rem; }
-        h3 { font-size: 1.5rem; color: var(--text-dark); margin-bottom: 0.5rem; line-height: 1.3; font-weight: 600; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px;}
+        h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; color: var(--text-light); margin-bottom: 1.5rem; text-align: center;}
+        h2 { font-size: clamp(2rem, 4vw, 3rem); margin-top: 3rem; margin-bottom: 1.5rem; color: var(--bg-dark); padding-bottom: 0.5rem; font-weight: 800;}
+        h3 { font-size: 1.5rem; color: var(--bg-dark); margin-bottom: 0.5rem; line-height: 1.3; font-weight: 700; }
         .container { max-width: 1200px; margin: 0 auto; }
         .main-content { padding: 2rem 2rem 4rem 2rem; }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 4rem; }
-        .logo { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.8rem; letter-spacing: 1px; text-decoration: none; color: var(--text-light); }
-        .logo span { color: var(--accent-orange); }
-        .nav-links a { color: var(--text-light); text-decoration: none; margin-left: 2rem; font-weight: 600; transition: color 0.3s ease; }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent-yellow); }
+        .logo-container { display: flex; flex-direction: column; align-items: center; text-decoration: none;}
+        .logo-plant { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 2.2rem; letter-spacing: 6px; color: var(--text-light); line-height: 1;}
+        .logo-protocol { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: 10px; color: var(--accent-leaf); line-height: 1; margin-top: 0.4rem;}
+        .logo-tagline { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.6rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); line-height: 1; margin-top: 0.6rem;}
+        .nav-links a { color: var(--text-light); text-decoration: none; margin-left: 2rem; font-weight: 600; transition: color 0.3s ease; font-family: 'Montserrat', sans-serif; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;}
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-leaf); }
         header.blog-header { text-align: center; margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto; }
-        .meta-tags { display: flex; justify-content: center; gap: 1rem; color: var(--text-light); font-size: 0.9rem; font-weight: 600; flex-wrap: wrap;}
+        .meta-tags { display: flex; justify-content: center; gap: 1rem; color: var(--text-light); font-size: 0.85rem; font-weight: 700; flex-wrap: wrap; font-family: 'Montserrat', sans-serif; text-transform: uppercase;}
         .meta-tag { background: rgba(255,255,255,0.1); padding: 0.4rem 1.2rem; border-radius: 50px; }
         .intro { max-width: 800px; margin: 0 auto; font-size: 1.1rem; text-align: center; color: var(--text-dark); }
-        .btn-glow { display: block; padding: 0.8rem 1.8rem; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.95rem; color: #fff; background: var(--accent-orange); text-decoration: none; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 20px rgba(234, 99, 40, 0.2); transition: all 0.3s ease; text-align: center; white-space: nowrap; border: none; }
-        .btn-glow:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(234, 99, 40, 0.3); background: #d9551c; color: #fff;}
+        .btn-glow { display: block; padding: 0.8rem 1.8rem; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; color: #fff; background: var(--accent-green); text-decoration: none; border-radius: 50px; text-transform: uppercase; letter-spacing: 1.5px; transition: all 0.3s ease; text-align: center; white-space: nowrap; border: none; }
+        .btn-glow:hover { transform: translateY(-3px); background: var(--bg-dark); color: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1);}
         .deep-dive-section { padding-top: 3rem; }
         .review-block { display: flex; gap: 4rem; margin-bottom: 6rem; background: var(--card-bg); border-radius: 24px; padding: 3rem; box-shadow: 0 20px 40px rgba(0,0,0,0.04); align-items: center;}
         .review-left { flex: 0 0 40%; }
@@ -66,24 +68,24 @@
         .ali-embed-img { width: 100%; aspect-ratio: 1/1; background: #fff; display: flex; align-items: center; justify-content: center; position: relative; padding: 2rem;}
         .ali-embed-img img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
         .ali-embed-content { padding: 1.5rem; display: flex; flex-direction: column; background: #fcfcfc; border-top: 1px solid #eee;}
-        .ali-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-family: 'Playfair Display', serif;}
-        .ali-price { font-size: 1.8rem; font-weight: 800; color: var(--accent-orange); }
+        .ali-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-family: 'Montserrat', sans-serif; text-transform: none;}
+        .ali-price { font-size: 1.8rem; font-weight: 800; color: var(--accent-green); font-family: 'Montserrat', sans-serif;}
         .ali-original-price { font-size: 1rem; color: #999; text-decoration: line-through; margin-left: 0.5rem; font-weight: 400;}
-        .ali-rating { color: var(--accent-yellow); font-size: 1.1rem; margin: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; }
+        .ali-rating { color: var(--accent-leaf); font-size: 1.1rem; margin: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; }
         .ali-rating span { color: #666; font-size: 0.9rem; }
-        .ali-btn { background: var(--accent-orange); color: #fff; text-decoration: none; padding: 1rem; border-radius: 50px; font-weight: 600; text-align: center; display: block; margin-top: 1rem; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px;}
-        .ali-btn:hover { background: #d9551c; }
+        .ali-btn { background: var(--accent-green); color: #fff; text-decoration: none; padding: 1rem; border-radius: 50px; font-weight: 700; text-align: center; display: block; margin-top: 1rem; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;}
+        .ali-btn:hover { background: var(--bg-dark); }
         .verdict-box { background: var(--bg-light); padding: 1.5rem; border-radius: 16px; text-align: center; }
-        .score { font-size: 3.5rem; font-weight: 800; color: var(--bg-dark); font-family: 'Playfair Display', serif; line-height: 1; }
-        .score-label { text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-top: 0.5rem;}
+        .score { font-size: 3.5rem; font-weight: 900; color: var(--accent-green); font-family: 'Montserrat', sans-serif; line-height: 1; }
+        .score-label { text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: var(--text-muted); font-weight: 700; margin-top: 0.5rem; font-family: 'Montserrat', sans-serif;}
         .review-title-area { border-bottom: 1px solid #eaeaea; padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
         .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; background: var(--bg-light); padding: 2rem; border-radius: 16px; }
-        .pros h4 { color: #2e7d32; margin-bottom: 0.5rem; font-family: 'DM Sans', sans-serif;}
-        .cons h4 { color: #c62828; margin-bottom: 0.5rem; font-family: 'DM Sans', sans-serif;}
+        .pros h4 { color: var(--accent-green); margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif;}
+        .cons h4 { color: var(--text-dark); margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif;}
         ul { list-style-position: inside; color: var(--text-muted); }
         li { margin-bottom: 0.5rem; font-size: 0.95rem; }
-        footer { text-align: center; font-size: 0.9rem; position: relative; z-index: 10;}
-        footer a { color: var(--accent-yellow); text-decoration: none; transition: opacity 0.3s ease; margin: 0 1rem; }
+        footer { text-align: center; font-size: 0.9rem; position: relative; z-index: 10; font-family: 'Montserrat', sans-serif;}
+        footer a { color: var(--accent-leaf); text-decoration: none; transition: opacity 0.3s ease; margin: 0 1rem; font-weight: 600;}
         footer a:hover { opacity: 0.8; }
         p { margin-bottom: 1.2rem; }
         @media (max-width: 900px) { .review-block { flex-direction: column; gap: 2rem; } .review-left { flex: none; } }
@@ -91,29 +93,33 @@
         
         /* Hub specific styles */
         .hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; margin-top: 4rem; }
-        .hub-card { background: var(--card-bg); border-radius: 20px; padding: 3rem 2rem; text-align: center; transition: all 0.3s ease; text-decoration: none; color: var(--text-dark); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03);}
-        .hub-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        .hub-card { background: var(--card-bg); border-radius: 20px; padding: 3rem 2rem; text-align: center; transition: all 0.3s ease; text-decoration: none; color: var(--text-dark); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid transparent;}
+        .hub-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: rgba(109, 169, 81, 0.2);}
         .hub-icon { font-size: 4rem; margin-bottom: 1.5rem; }
-        .hub-card h3 { color: var(--bg-dark); margin-bottom: 1rem; font-family: 'Playfair Display', serif; font-size: 1.8rem;}
+        .hub-card h3 { color: var(--bg-dark); margin-bottom: 1rem; font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 800;}
         
         /* Pick Cards */
         .pick-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 15px 35px rgba(0,0,0,0.04); transition: transform 0.3s ease; border: 1px solid #f0f0f0;}
-        .pick-card:hover { transform: translateY(-5px); }
-        .pick-badge { background: var(--accent-yellow); text-align: center; font-weight: 700; padding: 0.6rem; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: var(--bg-dark); }
+        .pick-card:hover { transform: translateY(-5px); border-color: rgba(109, 169, 81, 0.3);}
+        .pick-badge { background: var(--accent-leaf); text-align: center; font-weight: 700; padding: 0.6rem; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: #fff; font-family: 'Montserrat', sans-serif;}
         .pick-image-container { height: 220px; overflow: hidden; background: #fff; position: relative; padding: 1rem;}
         .pick-content { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .pick-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.8rem; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: var(--bg-dark); font-family: 'Playfair Display', serif;}
+        .pick-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.8rem; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: var(--bg-dark); font-family: 'Montserrat', sans-serif; text-transform: none;}
         .pick-bottom-line { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem; font-style: italic; }
-        .btn-outline { display: block; padding: 0.8rem 1.5rem; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.9rem; color: var(--text-dark); background: transparent; border: 2px solid #eaeaea; text-decoration: none; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; text-align: center; white-space: nowrap; margin-bottom: 0.8rem; transition: all 0.3s ease;}
-        .btn-outline:hover { border-color: var(--bg-dark); }
-        .watermark { position: absolute; font-family: 'Playfair Display', serif; font-size: clamp(5rem, 15vw, 12rem); font-weight: 800; color: #fff; opacity: 0.02; line-height: 1; top: 10%; left: 50%; transform: translateX(-50%); white-space: nowrap; pointer-events: none;}
+        .btn-outline { display: block; padding: 0.8rem 1.5rem; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--text-dark); background: transparent; border: 2px solid #eaeaea; text-decoration: none; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; text-align: center; white-space: nowrap; margin-bottom: 0.8rem; transition: all 0.3s ease;}
+        .btn-outline:hover { border-color: var(--accent-green); color: var(--accent-green);}
+        .watermark { position: absolute; font-family: 'Montserrat', sans-serif; font-size: clamp(5rem, 15vw, 12rem); font-weight: 900; color: #fff; opacity: 0.02; line-height: 1; top: 10%; left: 50%; transform: translateX(-50%); white-space: nowrap; pointer-events: none;}
 </style>
 </head>
 <body>
     <div class="header-wrapper">
 
         <nav class="container">
-            <a href="index.html" class="logo">PlantProtocol<span>.</span></a>
+            <a href="index.html" class="logo-container">
+                <div class="logo-plant">PLANT</div>
+                <div class="logo-protocol">PROTOCOL</div>
+                <div class="logo-tagline">&mdash; EAT &bull; GROW &bull; THRIVE &mdash;</div>
+            </a>
             <div class="nav-links">
                 <a href="reviews.html" class="active">Gear</a>
                 <a href="https://www.youtube.com/@PlantProtocol" target="_blank">Reels</a>
@@ -132,11 +138,11 @@
     <div class="main-content">
         <div class="container">
             <div style="margin-bottom: 3rem;">
-                <a href="reviews.html" style="color: var(--accent-orange); text-decoration: none; font-weight: 600; font-size: 1.1rem;">&larr; Back to Gear Hub</a>
+                <a href="reviews.html" style="color: var(--accent-green); text-decoration: none; font-weight: 700; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px;">&larr; Back to Gear Hub</a>
             </div>
             
             <section class="intro" style="margin-bottom: 4rem;">
-                <p>Building out a functional urban homestead requires the right gear. Our selection of the best <strong>LED Grow Lights</strong> is specifically curated for growers who want performance without the massive retail markup. Through our PlantProtocol affiliate integration, we pull live pricing directly from the source.</p>
+                <p>Building out a functional urban homestead requires the right gear. Our selection of the best <strong>LED Grow Lights</strong> is specifically curated for growers who want performance without the massive retail markup. Through our Plant Protocol affiliate integration, we pull live pricing directly from the source.</p>
             </section>
 
             <section class="quick-recommendations">
@@ -258,13 +264,13 @@
                         </div>
                         <div class="verdict-box">
                             <div class="score">9.5</div>
-                            <div class="score-label">PlantProtocol Score</div>
+                            <div class="score-label">Plant Protocol Score</div>
                         </div>
                     </div>
                     <div class="review-right">
                         <div class="review-title-area">
                             <h2>800W LED Full Spectrum Plant Grow Light Indoor Flower Hydroponics Cultivation Lamp Greenhouse Tent Vegetables LED Fill Lighting</h2>
-                            <p style="color: var(--accent-orange); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Highest Yield Potential • Est. Price: $31.38</p>
+                            <p style="color: var(--accent-green); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;">Highest Yield Potential &bull; Est. Price: $31.38</p>
                         </div>
                         <p>Massive value for serious indoor homesteaders. When you are ready to max out performance, you need high quality.</p>
                         
@@ -296,13 +302,13 @@
                         </div>
                         <div class="verdict-box">
                             <div class="score">9.2</div>
-                            <div class="score-label">PlantProtocol Score</div>
+                            <div class="score-label">Plant Protocol Score</div>
                         </div>
                     </div>
                     <div class="review-right">
                         <div class="review-title-area">
                             <h2>250W Full Spectrum Plant Grow Light LED Quantum Board Seedling Cultivation Lamp Greenhouse Tent Hydroponic Flower Fill Lighting</h2>
-                            <p style="color: var(--accent-orange); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Best Overall Value • Est. Price: $26.68</p>
+                            <p style="color: var(--accent-green); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;">Best Overall Value &bull; Est. Price: $26.68</p>
                         </div>
                         <p>The sweet spot of price and performance, perfect for a standard 3x3 setup. Coming in at a fraction of domestic MSRPs, this is the industry standard.</p>
                         
@@ -334,13 +340,13 @@
                         </div>
                         <div class="verdict-box">
                             <div class="score">8.8</div>
-                            <div class="score-label">PlantProtocol Score</div>
+                            <div class="score-label">Plant Protocol Score</div>
                         </div>
                     </div>
                     <div class="review-right">
                         <div class="review-title-area">
                             <h2>5V Full Spectrum LED Indoor Plant Grow Light Quantum Board Seeds Cultivation Lights USB Greenhouse Vegs Hydroponic Fill Lighting</h2>
-                            <p style="color: var(--accent-orange); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Best Budget Pick • Est. Price: $9.06</p>
+                            <p style="color: var(--accent-green); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;">Best Budget Pick &bull; Est. Price: $9.06</p>
                         </div>
                         <p>An incredibly affordable entry perfect for apartment homesteading. Living in an apartment shouldn't stop you from urban farming.</p>
                         
@@ -372,13 +378,13 @@
                         </div>
                         <div class="verdict-box">
                             <div class="score">8.5</div>
-                            <div class="score-label">PlantProtocol Score</div>
+                            <div class="score-label">Plant Protocol Score</div>
                         </div>
                     </div>
                     <div class="review-right">
                         <div class="review-title-area">
                             <h2>LED Full Spectrum Grow Light DC5V USB Quantum Board Plant Lamp Indoor Potted Fruit Vegetable Cultivation Fill Lighting 1-4 Heads</h2>
-                            <p style="color: var(--accent-orange); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Top Pick For Microgreens • Est. Price: $10.47</p>
+                            <p style="color: var(--accent-green); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;">Top Pick For Microgreens &bull; Est. Price: $10.47</p>
                         </div>
                         <p>Highly efficient design built specifically for rapid vegetative growth.</p>
                         
@@ -410,13 +416,13 @@
                         </div>
                         <div class="verdict-box">
                             <div class="score">9.0</div>
-                            <div class="score-label">PlantProtocol Score</div>
+                            <div class="score-label">Plant Protocol Score</div>
                         </div>
                     </div>
                     <div class="review-right">
                         <div class="review-title-area">
                             <h2>240W Quantum LED Grow Light Board LM301H 660nm UV IR Full Spectrum Bar for Indoor Plant Growth And Bloom Tent Compatible</h2>
-                            <p style="color: var(--accent-orange); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Most Energy Efficient • Est. Price: $207.54</p>
+                            <p style="color: var(--accent-green); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;">Most Energy Efficient &bull; Est. Price: $207.54</p>
                         </div>
                         <p>Reduces your monthly power bill while maintaining solid performance. This gear pays for itself in energy savings.</p>
                         
@@ -448,13 +454,13 @@
                         </div>
                         <div class="verdict-box">
                             <div class="score">8.7</div>
-                            <div class="score-label">PlantProtocol Score</div>
+                            <div class="score-label">Plant Protocol Score</div>
                         </div>
                     </div>
                     <div class="review-right">
                         <div class="review-title-area">
                             <h2>4 Heads LED Grow Light Full Spectrum Quantum Board Plant Lamp USB 5V Fot Indoor Growth Box Potted Flowers Succulent Cultivation</h2>
-                            <p style="color: var(--accent-orange); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Best Compact Setup • Est. Price: $9.33</p>
+                            <p style="color: var(--accent-green); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;">Best Compact Setup &bull; Est. Price: $9.33</p>
                         </div>
                         <p>Perfect for fitting into ultra-tight spaces. When you are maximizing vertical space, these slim form factors are essential.</p>
                         
@@ -476,15 +482,16 @@
     </div>
 
         <div class="footer-wrapper">
-            <div class="watermark">PLANTPROTOCOL</div>
+            <div class="watermark">PLANT PROTOCOL</div>
             <div class="container">
                 <footer>
-                    <p>&copy; 2026 PlantProtocol. All rights reserved.</p>
+                    <div style="margin-bottom: 2rem; color: var(--accent-leaf); font-weight: 800; letter-spacing: 3px; font-size: 1rem;">EAT &bull; GROW &bull; THRIVE</div>
+                    <p>&copy; 2026 Plant Protocol. All rights reserved.</p>
                     <div style="margin-top: 1.5rem;">
                         <a href="privacy.html">Privacy Policy</a>
                         <a href="https://www.youtube.com/@PlantProtocol">YouTube</a>
                     </div>
-                    <p style="font-size: 0.8rem; margin-top: 3rem; opacity: 0.4;">Disclaimer: We may earn a commission from purchases made through the affiliate links on this page at no extra cost to you.</p>
+                    <p style="font-size: 0.8rem; margin-top: 3rem; opacity: 0.4; text-transform: none; font-family: 'DM Sans', sans-serif;">Disclaimer: We may earn a commission from purchases made through the affiliate links on this page at no extra cost to you.</p>
                 </footer>
             </div>
         </div>
