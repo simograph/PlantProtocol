@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <script>
+        // Mapping of clean item slugs to the massive AliExpress tracking links
+        const redirectMap = {};
+
+        window.onload = async function() {
+            try {
+                // Fetch the latest mapping database
+                const response = await fetch('redirects.json');
+                const links = await response.json();
+                
+                const urlParams = new URLSearchParams(window.location.search);
+                const item = urlParams.get('id');
+                
+                if (item && links[item]) {
+                    window.location.replace(links[item]);
+                } else {
+                    // Fallback to the homepage if the ID is invalid
+                    window.location.replace('index.html');
+                }
+            } catch (e) {
+                window.location.replace('index.html');
+            }
+        };
+    </script>
+</head>
+<body style="background-color: #103C27; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+    <h2>Routing you to the best deal...</h2>
+</body>
+</html>
